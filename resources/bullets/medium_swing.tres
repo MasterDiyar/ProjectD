@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BulletResource" format=3 uid="uid://bbc55nk48jeif"]
+
+[ext_resource type="Script" uid="uid://2n1ds6egi5q2" path="res://scripts/bullets/BulletResource.cs" id="1_ae71t"]
+[ext_resource type="Texture2D" uid="uid://c175n34p8ov0q" path="res://assets/bullets/close/DefaultSwing1.png" id="1_fpb4v"]
+[ext_resource type="Texture2D" uid="uid://evuvvru7tc2p" path="res://assets/bullets/close/DefaultSwing2.png" id="2_rh0ne"]
+[ext_resource type="Texture2D" uid="uid://0nd6isdwy6qr" path="res://assets/bullets/close/DefaultSwing3.png" id="3_wcv4u"]
+
+[resource]
+script = ExtResource("1_ae71t")
+Texture = Array[Texture2D]([ExtResource("1_fpb4v"), ExtResource("2_rh0ne"), ExtResource("3_wcv4u")])
+AnimationSpeed = 6.0
+Damage = 20.0
+Spread = 16.0
+Lifetime = 0.5
+metadata/_custom_type_script = "uid://2n1ds6egi5q2"

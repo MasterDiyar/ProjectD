@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bfgh60ivkrill"]
+
+[ext_resource type="PackedScene" uid="uid://b1obcvxxvyfv7" path="res://scenes/player/player.tscn" id="1_7uo7r"]
+[ext_resource type="PackedScene" uid="uid://cvhwt6ure4vo0" path="res://scenes/map/floor_spawner.tscn" id="2_w63ba"]
+[ext_resource type="PackedScene" uid="uid://t802flk8ombc" path="res://scenes/map/levels/floor1/floor_1_1.tscn" id="3_dyaw2"]
+[ext_resource type="PackedScene" uid="uid://fqdhm5udry3b" path="res://scenes/weapon/fallen_item.tscn" id="4_dyaw2"]
+[ext_resource type="Resource" uid="uid://dlr20d8dwgof3" path="res://resources/weapons/rusty_sword.tres" id="5_0o1j4"]
+[ext_resource type="Resource" uid="uid://cqfsqgp4gmmgy" path="res://resources/weapons/iron_moons.tres" id="6_0o1j4"]
+
+[node name="Level1" type="Node2D" unique_id=489502560]
+
+[node name="Floors" type="Node2D" parent="." unique_id=1818649898]
+scale = Vector2(2, 2)
+
+[node name="Marker2D" type="Marker2D" parent="Floors" unique_id=1502990681]
+position = Vector2(178, 98.5)
+scale = Vector2(0.5, 0.5)
+
+[node name="Player" parent="." unique_id=403161475 instance=ExtResource("1_7uo7r")]
+
+[node name="FloorSpawner" parent="." unique_id=2000616467 node_paths=PackedStringArray("SpawnPoints", "WhereToSpawn") instance=ExtResource("2_w63ba")]
+SpawnPoints = [NodePath("../Floors/Marker2D")]
+FloorScenes = Array[PackedScene]([ExtResource("3_dyaw2")])
+WhereToSpawn = NodePath("../Floors")
+
+[node name="FallenItem" parent="." unique_id=280327951 instance=ExtResource("4_dyaw2")]
+position = Vector2(103.249756, 55.435318)
+ItemResource = ExtResource("5_0o1j4")
+
+[node name="FallenItem2" parent="." unique_id=644317630 instance=ExtResource("4_dyaw2")]
+position = Vector2(8.355347, 106.02712)
+ItemResource = ExtResource("6_0o1j4")

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bv2yvrppgsd12"]
+
+[ext_resource type="Script" uid="uid://b5aflnh0pffnp" path="res://scripts/bullets/Bullet.cs" id="1_7c8un"]
+[ext_resource type="Material" uid="uid://doqdkwuo2j43t" path="res://shaders/bullets/tricolor.tres" id="2_83itf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dci7n"]
+
+[node name="Bullet" type="Area2D" unique_id=582828526 node_paths=PackedStringArray("BulletSprite")]
+texture_filter = 3
+script = ExtResource("1_7c8un")
+BulletSprite = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=587031540]
+shape = SubResource("CircleShape2D_dci7n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1904308032]
+material = ExtResource("2_83itf")

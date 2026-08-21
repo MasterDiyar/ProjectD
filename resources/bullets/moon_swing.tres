@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BulletResource" format=3 uid="uid://dk3h0my8f7pyy"]
+
+[ext_resource type="Script" uid="uid://2n1ds6egi5q2" path="res://scripts/bullets/BulletResource.cs" id="1_e0hgn"]
+[ext_resource type="Texture2D" uid="uid://ddou546aeemc2" path="res://assets/bullets/close/MoonsSwing1.png" id="1_vsykk"]
+[ext_resource type="Texture2D" uid="uid://uv8c6cobrsie" path="res://assets/bullets/close/MoonsSwing2.png" id="2_gjhg2"]
+[ext_resource type="Texture2D" uid="uid://cfbgtkibm6qd0" path="res://assets/bullets/close/MoonsSwing3.png" id="3_rqybl"]
+[ext_resource type="Texture2D" uid="uid://bew1evxr4hex7" path="res://assets/bullets/close/MoonsSwing4.png" id="4_30wml"]
+
+[resource]
+script = ExtResource("1_e0hgn")
+Texture = Array[Texture2D]([ExtResource("1_vsykk"), ExtResource("2_gjhg2"), ExtResource("3_rqybl"), ExtResource("4_30wml")])
+AnimationSpeed = 5.0
+Damage = 40.0
+Speed = 10.0
+Lifetime = 0.8
+metadata/_custom_type_script = "uid://2n1ds6egi5q2"

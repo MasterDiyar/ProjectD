@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://cqfsqgp4gmmgy"]
+
+[ext_resource type="Resource" uid="uid://dk3h0my8f7pyy" path="res://resources/bullets/moon_swing.tres" id="1_4vrmo"]
+[ext_resource type="Animation" uid="uid://cwtu7d6whglve" path="res://resources/anims/moons/onAttack.res" id="1_tdva3"]
+[ext_resource type="Script" uid="uid://cvqkhty8vm1jn" path="res://scripts/weapon/WeaponResource.cs" id="1_v5qrf"]
+[ext_resource type="Texture2D" uid="uid://cr5wg4bmgt8eq" path="res://assets/weapons/iron_moons.png" id="2_7olld"]
+[ext_resource type="Animation" uid="uid://dtbe7inhsgtnv" path="res://resources/anims/moons/onIdle.res" id="3_csqqv"]
+
+[resource]
+script = ExtResource("1_v5qrf")
+Texture = Array[Texture2D]([ExtResource("2_7olld"), ExtResource("2_7olld")])
+BulletCount = 1
+Bullet = ExtResource("1_4vrmo")
+BulletScale = 1.3
+AttackSpeed = 1.6
+OffsetSpawn = 24.0
+AttackAnimation = ExtResource("1_tdva3")
+IdleAnimation = ExtResource("3_csqqv")
+metadata/_custom_type_script = "uid://cvqkhty8vm1jn"

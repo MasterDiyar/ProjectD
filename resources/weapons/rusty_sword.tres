@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://dlr20d8dwgof3"]
+
+[ext_resource type="Resource" uid="uid://bbc55nk48jeif" path="res://resources/bullets/medium_swing.tres" id="1_8h2ad"]
+[ext_resource type="Script" uid="uid://cvqkhty8vm1jn" path="res://scripts/weapon/WeaponResource.cs" id="1_28qxn"]
+[ext_resource type="Texture2D" uid="uid://cknqemipf5gv8" path="res://assets/weapons/rusty_sword.png" id="1_hwcen"]
+[ext_resource type="Animation" uid="uid://bpgxr3pwrv40w" path="res://resources/anims/swords/medium/onAttack.res" id="1_v7wcs"]
+[ext_resource type="Animation" uid="uid://d13dwmsuvmosh" path="res://resources/anims/swords/medium/onIdle.res" id="3_k5exx"]
+
+[resource]
+script = ExtResource("1_28qxn")
+Texture = Array[Texture2D]([ExtResource("1_hwcen")])
+BulletCount = 1
+Bullet = ExtResource("1_8h2ad")
+AttackSpeed = 0.625
+OffsetSpawn = 16.0
+AttackAnimation = ExtResource("1_v7wcs")
+IdleAnimation = ExtResource("3_k5exx")
+metadata/_custom_type_script = "uid://cvqkhty8vm1jn"

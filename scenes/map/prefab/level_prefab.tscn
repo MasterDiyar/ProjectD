@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://mix20w6yfgl2"]
+
+[node name="Earth" type="TileMapLayer" unique_id=590710984]
+texture_filter = 3
+
+[node name="Wall" type="TileMapLayer" parent="." unique_id=40031237]
+
+[node name="Other" type="TileMapLayer" parent="." unique_id=2007154931]

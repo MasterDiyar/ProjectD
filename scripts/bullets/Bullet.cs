@@ -28,7 +28,7 @@ public partial class Bullet : Area2D
 		if (body is not Unit player || player == Mother) return;
 		PierceCount--;
 		if (PierceCount == 0)
-			QueueFree();
+			SetDeferred("monitoring", false);
 		player.TakeDamage(new HitData {Damage = Damage, Element = BulletRes.ElementType, KnockbackForce = KnockbackStrength, Type = WeaponType});
 	}
 
@@ -40,6 +40,7 @@ public partial class Bullet : Area2D
 		a.Lifetime = a.BulletRes.Lifetime;
 		a.PierceCount = a.BulletRes.PierceCount;
 		a.Speed = b.Speed;
+		((CircleShape2D)a.GetNode<CollisionShape2D>("CollisionShape2D").Shape).Radius = b.CollisionRadius;
 		return a;
 	}
 

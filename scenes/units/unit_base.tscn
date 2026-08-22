@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dspuaxxk3qb4i"]
+
+[ext_resource type="Script" uid="uid://clgf3ji7bpvb7" path="res://scripts/units/Unit.cs" id="1_0rs8x"]
+
+[node name="Unit" type="CharacterBody2D" unique_id=41925537]
+texture_filter = 3
+script = ExtResource("1_0rs8x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1635388551]

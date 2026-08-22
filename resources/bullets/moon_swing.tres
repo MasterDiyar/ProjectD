@@ -13,4 +13,5 @@ AnimationSpeed = 5.0
 Damage = 40.0
 Speed = 10.0
 Lifetime = 0.8
+CollisionRadius = 48.0
 metadata/_custom_type_script = "uid://2n1ds6egi5q2"

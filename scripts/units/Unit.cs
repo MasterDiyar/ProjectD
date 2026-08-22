@@ -6,6 +6,7 @@ namespace ProjectD.scripts.units;
 
 public partial class Unit : CharacterBody2D
 {
+    [Signal] public delegate void StatsLoadedEventHandler();
     [Export]public UnitStats Stats;
     public float Hp;
     public float Armor;
@@ -27,6 +28,7 @@ public partial class Unit : CharacterBody2D
         Mana = Stats.BaseMana;
         KritChance = Stats.BaseKritChance;
         KritModifier = Stats.BaseKritModifier;
+        EmitSignal(SignalName.StatsLoaded);
     }
 
     public virtual void TakeDamage(HitData data)

@@ -12,4 +12,6 @@ public partial class BulletResource : Resource
     [Export] public float Lifetime;
     [Export] public float PierceCount = 1;
     [Export] public ElementType ElementType;
+    [Export] public float CollisionRadius;
+    
 }

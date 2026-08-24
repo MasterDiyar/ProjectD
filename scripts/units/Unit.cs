@@ -18,6 +18,7 @@ public partial class Unit : CharacterBody2D
     
     public ElementType UnitElement, HittedElement;
     public WeaponType UnitWeapon;
+    public Weapon CurrentWeapon;
 
     public override void _Ready()
     {

@@ -6,3 +6,6 @@ texture_filter = 3
 [node name="Other" type="TileMapLayer" parent="." unique_id=2007154931]
 
 [node name="Wall" type="TileMapLayer" parent="." unique_id=40031237]
+
+[node name="Shadows" type="TileMapLayer" parent="." unique_id=331015151]
+texture_filter = 3

@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://c433114wuma1x"]
+
+[ext_resource type="Texture2D" uid="uid://q1dxx8kl4ehc" path="res://assets/worldmap_tiles/first_level_totems.png" id="1_8j783"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdmle"]
+atlas = ExtResource("1_8j783")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sdmle"]
+height = 36.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qne41"]
+atlas = ExtResource("1_8j783")
+region = Rect2(80, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m32st"]
+atlas = ExtResource("1_8j783")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrv5r"]
+atlas = ExtResource("1_8j783")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_il5w3"]
+atlas = ExtResource("1_8j783")
+region = Rect2(48, 32, 32, 32)
+
+[node name="Totem1" type="Sprite2D" unique_id=1573107779]
+texture_filter = 3
+texture = SubResource("AtlasTexture_sdmle")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2072279230]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2086642653]
+position = Vector2(0, -7)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_sdmle")
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=1984111829]
+show_behind_parent = true
+position = Vector2(-6, 3)
+texture = SubResource("AtlasTexture_qne41")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1602297538]
+position = Vector2(-1, -13)
+texture = SubResource("AtlasTexture_m32st")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1877878360]
+z_index = 2
+position = Vector2(-1, -24)
+texture = SubResource("AtlasTexture_vrv5r")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1201999855]
+z_index = 2
+position = Vector2(1, -41)
+texture = SubResource("AtlasTexture_il5w3")

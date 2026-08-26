@@ -6,29 +6,36 @@ namespace ProjectD.scripts.units;
 
 public partial class Unit : CharacterBody2D
 {
+    [Signal] public delegate void HealthChangedEventHandler(float currentHp, float maxHp);
+    [Signal] public delegate void DamageTakenEventHandler(float amount, int elementType);
+    [Signal] public delegate void HealedEventHandler(float amount);
     [Signal] public delegate void StatsLoadedEventHandler();
     [Export]public UnitStats Stats;
-    public float Hp;
-    public float Armor;
+    [Export] public Weapon Weapon;
+    public float Hp, MaxHp;
+    public float Armor, MaxArmor;
     public float Damage;
-    public float Speed;
-    public float Mana;
+    public float Speed, MaxSpeed;
+    public float Mana, MaxMana;
     public float KritChance;
     public float KritModifier;
     
     public ElementType UnitElement, HittedElement;
     public WeaponType UnitWeapon;
-    public Weapon CurrentWeapon;
 
     public override void _Ready()
     {
-        Hp = Stats.BaseHp;
-        Armor = Stats.BaseArmor;
+        MaxHp = Stats.BaseHp;
+        MaxArmor = Stats.BaseArmor;
         Damage = Stats.BaseDamage;
-        Speed = Stats.BaseSpeed;
-        Mana = Stats.BaseMana;
+        MaxSpeed = Stats.BaseSpeed;
+        MaxMana = Stats.BaseMana;
         KritChance = Stats.BaseKritChance;
         KritModifier = Stats.BaseKritModifier;
+        Hp = MaxHp;
+        Armor = MaxArmor;
+        Speed = MaxSpeed;
+        Mana = MaxMana;
         EmitSignal(SignalName.StatsLoaded);
     }
 
@@ -48,7 +55,17 @@ public partial class Unit : CharacterBody2D
 
     public virtual void ExecuteDie()
     {
-        
         QueueFree();
+    }
+
+    public virtual void AddSoulStats(Soul soul)
+    {
+        Hp = Stats.BaseHp + soul.SoulStats.BaseHp;
+        MaxArmor = Stats.BaseArmor + soul.SoulStats.BaseArmor;
+        Damage = Stats.BaseDamage + soul.SoulStats.BaseDamage;
+        Speed = Stats.BaseSpeed + soul.SoulStats.BaseSpeed;
+        Mana = Stats.BaseMana + soul.SoulStats.BaseMana;
+        KritChance = Stats.BaseKritChance + soul.SoulStats.BaseKritChance;
+        KritModifier = Stats.BaseKritModifier + soul.SoulStats.BaseKritModifier; 
     }
 }

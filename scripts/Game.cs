@@ -1,11 +1,12 @@
 using Godot;
 using System;
+using ProjectD.scripts.ui;
 
 public partial class Game : Node2D
 {
 	public static Game Instance;
 	[Export] public Node2D Pausable;
-	[Export]public CanvasLayer UI; 
+	[Export]public UIController UI; 
 	[Export] public Label PausedLabel;
 	bool isPaused = false;
 	public override void _Ready()

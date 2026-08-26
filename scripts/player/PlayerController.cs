@@ -18,26 +18,24 @@ public struct HitData
 
 public partial class PlayerController : Unit
 {
-    [Signal] public delegate void HealthChangedEventHandler(float currentHp, float maxHp);
-    [Signal] public delegate void DamageTakenEventHandler(float amount, int elementType);
-    [Signal] public delegate void HealedEventHandler(float amount);
+    
     [Signal] public delegate void SoulChangedEventHandler(int newSoulIndex);
     [Signal] public delegate void WeaponChangedEventHandler(int newWeaponIndex);
     [Signal] public delegate void ItemAddedEventHandler(string itemName);
+    [Signal] public delegate void SoulAddedEventHandler(Soul soul, int index);
+    [Signal] public delegate void WeaponAddedEventHandler(WeaponResource weaponResource, int index);
 
     [Export] private Camera2D _camera;
     [Export] public Node2D HandNode;
-    [Export] public Weapon Weapon;
     
-    private float _currentHp;
     private bool _inBattle = false;
     
     // Используем List вместо массивов, так как мы будем добавлять предметы по ходу игры
-    private List<string> _souls = new(); // Пока string как плейсхолдер для класса Soul
+    private List<Soul> _souls = new(); // Пока string как плейсхолдер для класса Soul
     private List<WeaponResource> _weapons = new(); // Плейсхолдер для класса Weapon
-    
-    private int _currentSoulIndex = 0;
-    private int _currentWeaponIndex = 0;
+
+    public int CurrentSoulIndex = 0;
+    public int CurrentWeaponIndex = 0;
     
     private float _shakeStrength = 0f;
     private readonly float _shakeDecayRate = 5f;
@@ -49,10 +47,13 @@ public partial class PlayerController : Unit
     {
         base._Ready();
         _rng.Randomize();
-        _currentHp = Stats?.BaseHp ?? 100f; 
-        
-        AddSoul("Пустая кукла");
+        Hp = Stats?.BaseHp ?? 100f;
+
+        CallDeferred(MethodName.UISetup);
+
     }
+    
+    void UISetup() => Game.Instance.UI.PlayerUI.SetPlayer(this);
 
     public override void _PhysicsProcess(double delta)
     {
@@ -92,47 +93,56 @@ public partial class PlayerController : Unit
             Weapon.ExecuteShoot(angle, this);
     }
 
-    public override void TakeDamage(HitData hit)
+    public override void TakeDamage(HitData data)
     {
-        float armorMultiplier = 100f / (100f + (Stats?.BaseArmor ?? 0f));
-        float finalDamage = hit.Damage * armorMultiplier;
-
-        _currentHp -= finalDamage;
+        var damage = data.Damage;
+        if (Armor <= 0) {
+            HittedElement = ElementShaker.Shake(HittedElement, data.Element);
+            damage *= Elements.GetElement(data.Element).DamageModifier;
+            damage *= WeaponTypeNums.GetModifier(UnitWeapon, data.Element);
+            Hp -= damage;
+            if (Hp <= 0) ExecuteDie();
+        }else {
+            Armor -= damage;
+        }
         
-        ApplyCameraShake(finalDamage * 0.5f);
+        ApplyCameraShake(damage * 0.5f);
 
-        EmitSignal(SignalName.DamageTaken, finalDamage, (int)hit.Element);
-        EmitSignal(SignalName.HealthChanged, _currentHp, Stats?.BaseHp ?? 100f);
+        EmitSignal(Unit.SignalName.DamageTaken, damage, (int)data.Element);
+        EmitSignal(Unit.SignalName.HealthChanged, Hp, Stats?.BaseHp ?? 100f);
 
-        if (_currentHp <= 0)
+        if (Hp <= 0)
         {
-            Die();
+            ExecuteDie();
         }
     }
 
     public void Heal(float amount)
     {
-        _currentHp = Mathf.Min(_currentHp + amount, Stats?.BaseHp ?? 100f);
+        Hp = Mathf.Min(Hp + amount, Stats?.BaseHp ?? 100f);
         EmitSignal(SignalName.Healed, amount);
-        EmitSignal(SignalName.HealthChanged, _currentHp, Stats?.BaseHp ?? 100f);
+        EmitSignal(SignalName.HealthChanged, Hp, Stats?.BaseHp ?? 100f);
     }
 
-    private void Die()
+    public override void ExecuteDie()
     {
-        GD.Print("Кукла сломана!");
+        Game.Instance.QueueFree();
+        GetTree().Root.AddChild(GD.Load<PackedScene>("res://scenes/game.tscn").Instantiate<Game>());   
     }
 
     public void AddWeapon(WeaponResource weapon)
     {
         _weapons.Add(weapon);
-        EmitSignal(SignalName.ItemAdded, weapon);
         if (_weapons.Count == 1)
             Weapon.ResourceLoad(_weapons[0]);
+        EmitSignal(SignalName.ItemAdded, weapon);
     }
 
-    public void AddSoul(string soul)
+    public void AddSoul(Soul soul)
     {
         _souls.Add(soul);
+        if  (_souls.Count == 1)
+            
         EmitSignal(SignalName.ItemAdded, soul);
     }
 
@@ -140,17 +150,17 @@ public partial class PlayerController : Unit
     {
         if (_souls.Count == 0) return;
         
-        _currentSoulIndex = (_currentSoulIndex + direction % _souls.Count + _souls.Count) % _souls.Count;
-        EmitSignal(SignalName.SoulChanged, _currentSoulIndex);
+        CurrentSoulIndex = (CurrentSoulIndex + direction % _souls.Count + _souls.Count) % _souls.Count;
+        EmitSignal(SignalName.SoulChanged, CurrentSoulIndex);
     }
 
     private void SwitchWeapon(int direction)
     {
         if (_weapons.Count == 0) return;
         
-        _currentWeaponIndex = (_currentWeaponIndex + direction % _weapons.Count + _weapons.Count) % _weapons.Count;
-        Weapon.ResourceLoad(_weapons[_currentWeaponIndex]);
-        EmitSignal(SignalName.WeaponChanged, _currentWeaponIndex);
+        CurrentWeaponIndex = (CurrentWeaponIndex + direction % _weapons.Count + _weapons.Count) % _weapons.Count;
+        Weapon.ResourceLoad(_weapons[CurrentWeaponIndex]);
+        EmitSignal(SignalName.WeaponChanged, CurrentWeaponIndex);
     }
 
     public void SetBattleState(bool inBattle)

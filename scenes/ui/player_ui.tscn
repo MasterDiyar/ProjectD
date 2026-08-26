@@ -1,0 +1,187 @@
+[gd_scene format=3 uid="uid://m36c7wtlpliw"]
+
+[ext_resource type="Texture2D" uid="uid://156j4mnpuwmk" path="res://assets/ui/base_ui.png" id="1_2sf84"]
+[ext_resource type="Script" uid="uid://x1mascd6snfg" path="res://scripts/ui/PlayerUI.cs" id="1_jg20v"]
+[ext_resource type="PackedScene" uid="uid://or2nmekw624s" path="res://scenes/ui/soul_button.tscn" id="2_jg20v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdmle"]
+atlas = ExtResource("1_2sf84")
+region = Rect2(0, 0, 272.06686, 32.66019)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grgi1"]
+atlas = ExtResource("1_2sf84")
+region = Rect2(128, 32, 16, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fatqr"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3v65l"]
+bg_color = Color(0.56, 0.2516267, 0.22960001, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvc2c"]
+bg_color = Color(0.6, 0, 0, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fatqr"]
+load_path = "res://.godot/imported/base_ui.png-7743845aac9f0f7496f16d4354fb733d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1afs1"]
+atlas = SubResource("CompressedTexture2D_fatqr")
+region = Rect2(48, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7v3g"]
+atlas = SubResource("CompressedTexture2D_fatqr")
+region = Rect2(80, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg20v"]
+atlas = ExtResource("1_2sf84")
+region = Rect2(0, 176, 224, 64)
+
+[node name="PlayerUI" type="Control" unique_id=1911058716 node_paths=PackedStringArray("SoulsContainer", "SoulButtons", "ManaBar", "ShieldBar", "HealthBar")]
+texture_filter = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jg20v")
+SoulsContainer = NodePath("MarginContainer/Control/VBoxContainer")
+SoulButtons = [NodePath("MarginContainer/Control/VBoxContainer/SoulButton"), NodePath("MarginContainer/Control/VBoxContainer/SoulButton2"), NodePath("MarginContainer/Control/VBoxContainer/SoulButton3"), NodePath("MarginContainer/Control/VBoxContainer/SoulButton4"), NodePath("MarginContainer/Control/VBoxContainer/SoulButton5"), NodePath("MarginContainer/Control/VBoxContainer/SoulButton6"), NodePath("MarginContainer/Control/VBoxContainer/SoulButton7")]
+ManaBar = NodePath("MarginContainer/Control/ManaBar")
+ShieldBar = NodePath("MarginContainer/Control/ShieldBar")
+HealthBar = NodePath("MarginContainer/NinePatchRect/MarginContainer/HSlider")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1527106387]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer" unique_id=2098337379]
+custom_minimum_size = Vector2(300, 64)
+custom_maximum_size = Vector2(300, 44)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_sdmle")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/NinePatchRect" unique_id=1722240190]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/NinePatchRect/MarginContainer" unique_id=1199472781]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1, 4.5)
+mouse_filter = 2
+mouse_behavior_recursive = 1
+theme_override_constants/center_grabber = 1
+theme_override_icons/grabber = SubResource("AtlasTexture_grgi1")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_grgi1")
+theme_override_icons/grabber_disabled = SubResource("AtlasTexture_grgi1")
+theme_override_styles/slider = SubResource("StyleBoxFlat_fatqr")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_3v65l")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_tvc2c")
+value = 100.0
+
+[node name="Control" type="Control" parent="MarginContainer" unique_id=1022019062]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control" unique_id=181143590]
+layout_mode = 0
+offset_left = 1685.0
+offset_top = 200.0
+offset_right = 1901.749
+offset_bottom = 825.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="SoulButton" parent="MarginContainer/Control/VBoxContainer" unique_id=1026632638 instance=ExtResource("2_jg20v")]
+layout_mode = 2
+
+[node name="SoulButton2" parent="MarginContainer/Control/VBoxContainer" unique_id=1359287657 instance=ExtResource("2_jg20v")]
+layout_mode = 2
+
+[node name="SoulButton3" parent="MarginContainer/Control/VBoxContainer" unique_id=72968131 instance=ExtResource("2_jg20v")]
+layout_mode = 2
+
+[node name="SoulButton4" parent="MarginContainer/Control/VBoxContainer" unique_id=1528621092 instance=ExtResource("2_jg20v")]
+layout_mode = 2
+
+[node name="SoulButton5" parent="MarginContainer/Control/VBoxContainer" unique_id=1995865415 instance=ExtResource("2_jg20v")]
+layout_mode = 2
+
+[node name="SoulButton6" parent="MarginContainer/Control/VBoxContainer" unique_id=1769216993 instance=ExtResource("2_jg20v")]
+layout_mode = 2
+
+[node name="SoulButton7" parent="MarginContainer/Control/VBoxContainer" unique_id=1903718016 instance=ExtResource("2_jg20v")]
+layout_mode = 2
+
+[node name="ManaBar" type="ProgressBar" parent="MarginContainer/Control" unique_id=1602891032]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 71.0
+offset_right = 290.0
+offset_bottom = 98.0
+min_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="ShieldBar" type="ProgressBar" parent="MarginContainer/Control" unique_id=762350590]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 110.0
+offset_right = 290.0
+offset_bottom = 137.0
+min_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Control" unique_id=1547113807]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 65.0
+offset_right = 39.0
+offset_bottom = 105.0
+texture = SubResource("AtlasTexture_1afs1")
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/Control" unique_id=1423953373]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 103.0
+offset_right = 39.0
+offset_bottom = 143.0
+texture = SubResource("AtlasTexture_g7v3g")
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/Control" unique_id=807305909]
+visible = false
+modulate = Color(1, 1, 1, 0.23529412)
+layout_mode = 0
+offset_left = 1683.0
+offset_top = 292.0
+offset_right = 1907.0
+offset_bottom = 356.0
+texture = SubResource("AtlasTexture_jg20v")

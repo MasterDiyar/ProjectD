@@ -6,7 +6,7 @@ namespace ProjectD.scripts.units;
 public static class Elements
 {
     public static Element
-        Fire = new(1.2f, new Color("#FFBB00"), new Color("#FF7700"),Colors.DarkRed ),
+        Fire = new(1.2f, Colors.DarkRed, new Color("#FF7700"),new Color("#FFBB00") ),
         Water = new(1.15f, Colors.DodgerBlue, Colors.CornflowerBlue, Colors.DeepSkyBlue),
         Metallic = new(1.4f, new Color(0.5f, 0.5f, 0.5f),Colors.DarkGray, new Color(0.8f, 0.8f, 0.8f)),
         Air = new(1.2f, Colors.Bisque,  new Color(0.8f, 0.8f, 0.8f),  new Color(0.9f, 0.9f, 0.9f)),

@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://or2nmekw624s"]
+
+[ext_resource type="Script" uid="uid://wlwg8j0moh7e" path="res://scripts/ui/SoulButton.cs" id="1_l345b"]
+[ext_resource type="FontFile" uid="uid://qrvxqxohflyi" path="res://assets/fonts/JimNightshade-Regular.ttf" id="1_x46sq"]
+[ext_resource type="Texture2D" uid="uid://biefj5hxrv24q" path="res://assets/units/goblin_atlas.png" id="3_x46sq"]
+[ext_resource type="Texture2D" uid="uid://156j4mnpuwmk" path="res://assets/ui/base_ui.png" id="4_x46sq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1d7oy"]
+load_path = "res://.godot/imported/base_ui.png-7743845aac9f0f7496f16d4354fb733d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4edo5"]
+atlas = SubResource("CompressedTexture2D_1d7oy")
+region = Rect2(0, 80, 32, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x46sq"]
+load_path = "res://.godot/imported/base_ui.png-7743845aac9f0f7496f16d4354fb733d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gysn"]
+atlas = SubResource("CompressedTexture2D_x46sq")
+region = Rect2(0, 176, 64, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x46sq"]
+atlas = ExtResource("3_x46sq")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdmle"]
+atlas = ExtResource("4_x46sq")
+region = Rect2(0, 112, 192, 48)
+
+[node name="SoulButton" type="Button" unique_id=1026632638 node_paths=PackedStringArray("SoulIcon")]
+texture_filter = 3
+offset_right = 192.0
+offset_bottom = 48.0
+theme_override_constants/h_separation = 0
+theme_override_constants/icon_max_width = 0
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_fonts/font = ExtResource("1_x46sq")
+theme_override_font_sizes/font_size = 32
+text = "Gay shit soul"
+icon = SubResource("AtlasTexture_4edo5")
+flat = true
+icon_alignment = 2
+script = ExtResource("1_l345b")
+SoulIcon = NodePath("TextureRect")
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=668855987]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 39.0
+offset_right = 651.99994
+offset_bottom = 79.0
+scale = Vector2(0.2, 0.2)
+texture = SubResource("AtlasTexture_1gysn")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1719372921]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -5.5
+offset_right = -12.0
+offset_bottom = 34.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_x46sq")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1351770248]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_sdmle")

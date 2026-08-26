@@ -1,16 +1,8 @@
 [gd_scene format=3 uid="uid://clh8rfmt6leu8"]
 
 [ext_resource type="Script" uid="uid://ck2u7g42mm6u7" path="res://scripts/weapon/Weapon.cs" id="1_l3xq3"]
-[ext_resource type="Animation" uid="uid://bpgxr3pwrv40w" path="res://resources/anims/swords/medium/onAttack.res" id="2_jej8l"]
-
-[sub_resource type="Animation" id="Animation_l3xq3"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iyg5g"]
-_data = {
-&"RESET": SubResource("Animation_l3xq3"),
-&"onAttack": ExtResource("2_jej8l")
-}
 
 [node name="Weapon" type="Node2D" unique_id=1018972646 node_paths=PackedStringArray("_betweenShoot", "Animator", "SpriteSlots")]
 texture_filter = 3
@@ -25,8 +17,7 @@ SpriteSlots = [NodePath("Slot0"), NodePath("Slot1"), NodePath("Slot2"), NodePath
 libraries/ = SubResource("AnimationLibrary_iyg5g")
 
 [node name="Slot0" type="Sprite2D" parent="." unique_id=473000198]
-position = Vector2(8, 24)
-rotation = 2.6179938
+position = Vector2(20, -4)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Slot1" type="Sprite2D" parent="." unique_id=1735772789]

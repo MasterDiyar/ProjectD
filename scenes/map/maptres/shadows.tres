@@ -1,0 +1,21 @@
+[gd_resource type="TileSet" format=3 uid="uid://bgscf6ldx6m6b"]
+
+[ext_resource type="Texture2D" uid="uid://c4p8l5a68gmhq" path="res://assets/worldmap_tiles/first_level_map.png" id="1_6w4qi"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g5lmt"]
+texture = ExtResource("1_6w4qi")
+8:6/0 = 0
+7:6/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+5:14/0 = 0
+7:7/0 = 0
+7:8/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+8:10/0 = 0
+7:10/0 = 0
+7:11/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_g5lmt")

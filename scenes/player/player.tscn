@@ -3,11 +3,16 @@
 [ext_resource type="Script" uid="uid://cariw5xsjhftc" path="res://scripts/player/PlayerController.cs" id="1_dovo2"]
 [ext_resource type="Script" uid="uid://b77qf1gmk5wxb" path="res://scripts/units/UnitStats.cs" id="2_lvxji"]
 [ext_resource type="Texture2D" uid="uid://igxowd02vyf5" path="res://assets/player/playtest_doll.png" id="3_gmlin"]
+[ext_resource type="Texture2D" uid="uid://biefj5hxrv24q" path="res://assets/units/goblin_atlas.png" id="3_p47bc"]
 [ext_resource type="PackedScene" uid="uid://clh8rfmt6leu8" path="res://scenes/weapon/weapon.tscn" id="4_p47bc"]
 
 [sub_resource type="Resource" id="Resource_lvxji"]
 script = ExtResource("2_lvxji")
 metadata/_custom_type_script = "uid://b77qf1gmk5wxb"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75vfm"]
+atlas = ExtResource("3_p47bc")
+region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p47bc"]
 height = 50.0
@@ -17,8 +22,12 @@ texture_filter = 3
 script = ExtResource("1_dovo2")
 _camera = NodePath("Camera2D")
 HandNode = NodePath("Hand")
-Weapon = NodePath("Hand/Weapon")
 Stats = SubResource("Resource_lvxji")
+Weapon = NodePath("Hand/Weapon")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=79133109]
+position = Vector2(0, 23)
+texture = SubResource("AtlasTexture_75vfm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=322740327]
 shape = SubResource("CapsuleShape2D_p47bc")

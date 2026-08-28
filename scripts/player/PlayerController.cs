@@ -27,6 +27,7 @@ public partial class PlayerController : Unit
 
     [Export] private Camera2D _camera;
     [Export] public Node2D HandNode;
+    [Export] public AnimatedSprite2D AnimSprite;
     
     private bool _inBattle = false;
     
@@ -57,10 +58,11 @@ public partial class PlayerController : Unit
 
     public override void _PhysicsProcess(double delta)
     {
-        HandleMovement();
+        HandleMovement((float)delta);
         HandleSelectionInputs();
         if (Input.IsActionPressed("lm"))
             HandleAttack();
+        if (!Weapon.CanShoot) Weapon.Scale = Vector2.One;
     }
 
     public override void _Process(double delta)
@@ -68,10 +70,18 @@ public partial class PlayerController : Unit
         HandleCameraEffects((float)delta);
     }
 
-    private void HandleMovement()
+    private float sin = 0;
+    private void HandleMovement(float dt)
     {
+        sin += dt;
+        if (Weapon.CanShoot) {
+            Weapon.Position = 2 * Vector2.Up * Mathf.Sin(2*sin);
+            Weapon.Rotation = 0.1f * Mathf.Sin(2 * sin);
+        }
         Vector2 direction = Input.GetVector("a", "d", "w", "s");
-        
+        AnimSprite.Play((direction.Length() < 0.1f) ? "idle":"move");
+        AnimSprite.FlipH = direction.X < 0;
+        Weapon.Scale = new Vector2(AnimSprite.FlipH ? -1 : 1, 1);
         Velocity = direction * (Stats?.BaseSpeed ?? 300f);
         MoveAndSlide();
     }
@@ -91,6 +101,8 @@ public partial class PlayerController : Unit
         
         if (Weapon.Resource == null) return;
             Weapon.ExecuteShoot(angle, this);
+            //Weapon.Scale = new Vector2(AnimSprite.FlipH ? 1 : -1, 1);
+            
     }
 
     public override void TakeDamage(HitData data)

@@ -5,9 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://igxowd02vyf5" path="res://assets/player/playtest_doll.png" id="3_gmlin"]
 [ext_resource type="Texture2D" uid="uid://biefj5hxrv24q" path="res://assets/units/goblin_atlas.png" id="3_p47bc"]
 [ext_resource type="PackedScene" uid="uid://clh8rfmt6leu8" path="res://scenes/weapon/weapon.tscn" id="4_p47bc"]
+[ext_resource type="Texture2D" uid="uid://j676d0n74pes" path="res://assets/player/playtest_doll1.png" id="6_je7p5"]
+[ext_resource type="Texture2D" uid="uid://bana064iohuvd" path="res://assets/player/playtest_doll2.png" id="7_fm80t"]
+[ext_resource type="Texture2D" uid="uid://srcoaximuauu" path="res://assets/player/playtest_doll3.png" id="8_gx1jg"]
+[ext_resource type="Texture2D" uid="uid://cudteqh6dn1yt" path="res://assets/player/playtest_doll4.png" id="9_ugbui"]
+[ext_resource type="Texture2D" uid="uid://diis2g5howsbn" path="res://assets/player/playtest_doll5.png" id="10_fcs02"]
+[ext_resource type="Texture2D" uid="uid://bxo8o7dy1yc25" path="res://assets/player/playtest_doll6.png" id="11_myrg7"]
 
 [sub_resource type="Resource" id="Resource_lvxji"]
 script = ExtResource("2_lvxji")
+BaseSpeed = 100.0
 metadata/_custom_type_script = "uid://b77qf1gmk5wxb"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_75vfm"]
@@ -17,11 +24,46 @@ region = Rect2(64, 32, 32, 32)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p47bc"]
 height = 50.0
 
-[node name="Player" type="CharacterBody2D" unique_id=403161475 node_paths=PackedStringArray("_camera", "HandNode", "Weapon")]
+[sub_resource type="SpriteFrames" id="SpriteFrames_sdmle"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_je7p5")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_je7p5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fm80t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gx1jg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ugbui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_fcs02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_myrg7")
+}],
+"loop": 1,
+"name": &"move",
+"speed": 8.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=403161475 node_paths=PackedStringArray("_camera", "HandNode", "AnimSprite", "Weapon")]
 texture_filter = 3
 script = ExtResource("1_dovo2")
 _camera = NodePath("Camera2D")
 HandNode = NodePath("Hand")
+AnimSprite = NodePath("AnimatedSprite2D")
 Stats = SubResource("Resource_lvxji")
 Weapon = NodePath("Hand/Weapon")
 
@@ -36,8 +78,14 @@ shape = SubResource("CapsuleShape2D_p47bc")
 zoom = Vector2(2, 2)
 
 [node name="PlaytestDoll" type="Sprite2D" parent="." unique_id=1617325837]
+visible = false
 texture = ExtResource("3_gmlin")
 
 [node name="Hand" type="Node2D" parent="." unique_id=28049045]
 
 [node name="Weapon" parent="Hand" unique_id=1254949922 instance=ExtResource("4_p47bc")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=119759789]
+sprite_frames = SubResource("SpriteFrames_sdmle")
+animation = &"idle"
+frame_progress = 0.26362166

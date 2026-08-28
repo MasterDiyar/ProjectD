@@ -11,6 +11,6 @@ Texture = Array[Texture2D]([ExtResource("1_fpb4v"), ExtResource("2_rh0ne"), ExtR
 AnimationSpeed = 6.0
 Damage = 20.0
 Spread = 16.0
-Lifetime = 0.5
+Lifetime = 0.3
 CollisionRadius = 32.0
 metadata/_custom_type_script = "uid://2n1ds6egi5q2"

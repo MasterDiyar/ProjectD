@@ -18,7 +18,7 @@ public partial class Weapon : Node2D
     private Tween _punchTween;
     
     bool _isShooted = false;
-    public bool CanShoot => _isShooted;
+    public bool CanShoot => !_isShooted;
 
     public override void _Ready()
     {
@@ -82,6 +82,7 @@ public partial class Weapon : Node2D
             bullet.Mother = unit;
             bullet.WeaponType = Type;
             bullet += Resource.Bullet;
+            bullet.Scale = Vector2.One * Resource.BulletScale;
             
             unit.GetParent().AddChild(bullet);
         }

@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Threading.Tasks;
+using Godot;
 using ProjectD.scripts.player;
 using ProjectD.scripts.units;
 
@@ -27,6 +28,8 @@ public partial class Weapon : Node2D
         _betweenShoot.Timeout += BetweenShootOnTimeout;
 
         Animator.AnimationFinished += AttackEnded;
+        
+        if (Resource != null) ResourceLoad(Resource);
     }
     void BetweenShootOnTimeout()
     {
@@ -63,7 +66,7 @@ public partial class Weapon : Node2D
         Animator.Play("onIdle");
         _defaultPosition = Position;
     }
-    public void ExecuteShoot(float angle, Unit unit)
+    public async Task ExecuteShoot(float angle, Unit unit)
     {
         if (_isShooted) return;
         _isShooted = true;
@@ -72,8 +75,19 @@ public partial class Weapon : Node2D
 
         Rotation = angle;
         TweenAnimation();
-        
 
+        await SpawnBullet(angle, unit);
+
+    }
+
+    public async Task SpawnBullet(float angle, Unit unit)
+    {
+        if (Resource.SpawnTimeOffset > 0) {
+            await ToSignal(GetTree().CreateTimer(Resource.SpawnTimeOffset, false), SceneTreeTimer.SignalName.Timeout);
+            if (!IsInstanceValid(this) || !IsInstanceValid(unit) || !IsInstanceValid(unit.GetParent())) 
+                return;
+        }
+        
         for (int i = 0; i < Resource.BulletCount; i++)
         {
             Bullet bullet = _bulletScene.Instantiate<Bullet>();

@@ -5,6 +5,7 @@
 [ext_resource type="TileSet" uid="uid://bj4co13tynand" path="res://scenes/map/maptres/walls.tres" id="3_ajisi"]
 [ext_resource type="TileSet" uid="uid://bgscf6ldx6m6b" path="res://scenes/map/maptres/shadows.tres" id="4_3dxb3"]
 [ext_resource type="PackedScene" uid="uid://0f8c0y5t8ks" path="res://scenes/units/goblin_base.tscn" id="4_vrxvd"]
+[ext_resource type="PackedScene" uid="uid://c2jgefp5drs2b" path="res://scenes/units/ai.tscn" id="6_m32st"]
 [ext_resource type="PackedScene" uid="uid://c433114wuma1x" path="res://scenes/map/levels/floor1/totem.tscn" id="6_qne41"]
 
 [node name="Floor1_1" unique_id=590710984 instance=ExtResource("1_fgv2p")]
@@ -37,14 +38,24 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(253, 184)
 scale = Vector2(0.5, 0.5)
 
-[node name="Totem1" parent="." index="6" unique_id=1573107779 instance=ExtResource("6_qne41")]
+[node name="Goblin4" parent="." index="6" unique_id=1243469323 instance=ExtResource("4_vrxvd")]
+position = Vector2(125, 130)
+scale = Vector2(0.5, 0.5)
+
+[node name="AI2" parent="Goblin4" index="12" unique_id=831052018 node_paths=PackedStringArray("_unit") instance=ExtResource("6_m32st")]
+_unit = NodePath("..")
+Behavior = 4
+_patrolPoints = PackedVector2Array(100, 75, 150, 25, 100, 25)
+Overrider = true
+
+[node name="Totem1" parent="." index="7" unique_id=1573107779 instance=ExtResource("6_qne41")]
 position = Vector2(332, 180)
 scale = Vector2(0.75, 0.75)
 
-[node name="Totem2" parent="." index="7" unique_id=1024071172 instance=ExtResource("6_qne41")]
+[node name="Totem2" parent="." index="8" unique_id=1024071172 instance=ExtResource("6_qne41")]
 position = Vector2(86, 134)
 scale = Vector2(0.75, 0.75)
 
-[node name="Totem3" parent="." index="8" unique_id=1267089873 instance=ExtResource("6_qne41")]
+[node name="Totem3" parent="." index="9" unique_id=1267089873 instance=ExtResource("6_qne41")]
 position = Vector2(267, 294)
 scale = Vector2(0.75, 0.75)

@@ -17,7 +17,6 @@ SpriteSlots = [NodePath("Slot0"), NodePath("Slot1"), NodePath("Slot2"), NodePath
 libraries/ = SubResource("AnimationLibrary_iyg5g")
 
 [node name="Slot0" type="Sprite2D" parent="." unique_id=473000198]
-position = Vector2(20, -4)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Slot1" type="Sprite2D" parent="." unique_id=1735772789]

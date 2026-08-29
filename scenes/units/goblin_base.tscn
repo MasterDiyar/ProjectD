@@ -6,13 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://biefj5hxrv24q" path="res://assets/units/goblin_atlas.png" id="3_nx1nd"]
 [ext_resource type="Script" uid="uid://cwtwg5bguyt68" path="res://scripts/units/UnitResource.cs" id="4_16fpb"]
 [ext_resource type="PackedScene" uid="uid://clh8rfmt6leu8" path="res://scenes/weapon/weapon.tscn" id="4_m5p41"]
+[ext_resource type="Resource" uid="uid://ic6hwbkr8ehe" path="res://resources/weapons/goblin_pike.tres" id="7_a4ns2"]
+[ext_resource type="PackedScene" uid="uid://c2jgefp5drs2b" path="res://scenes/units/ai.tscn" id="7_m5p41"]
 
 [sub_resource type="Resource" id="Resource_di43x"]
 script = ExtResource("2_nx1nd")
 BaseHp = 200.0
 BaseArmor = 0.0
 BaseDamage = 16.0
-BaseSpeed = 100.0
+BaseSpeed = 30.0
 metadata/_custom_type_script = "uid://b77qf1gmk5wxb"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ftwb7"]
@@ -139,6 +141,9 @@ Stats = Array[int]([1, 1, 7])
 Add = PackedFloat32Array(60, 90, 0)
 metadata/_custom_type_script = "uid://cwtwg5bguyt68"
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_sdmle"]
+radius = 105.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_grgi1"]
 radius = 11.0
 height = 34.0
@@ -159,50 +164,61 @@ region = Rect2(64, 0, 32, 16)
 atlas = ExtResource("3_nx1nd")
 region = Rect2(96, 80, 32, 40)
 
-[node name="Goblin" unique_id=41925537 instance=ExtResource("1_v4br4")]
+[node name="Goblin" unique_id=41925537 node_paths=PackedStringArray("Weapon") instance=ExtResource("1_v4br4")]
 Stats = SubResource("Resource_di43x")
+Weapon = NodePath("Weapon")
 
 [node name="UnitConstructor" parent="." index="0" unique_id=1553483954 node_paths=PackedStringArray("BlockSprites", "Unit") instance=ExtResource("2_16fpb")]
 Blocks = Array[Object]([SubResource("Resource_a4ns2"), SubResource("Resource_moe8y"), SubResource("Resource_jf6dj"), SubResource("Resource_oai3e")])
 BlockSprites = [NodePath("../Torso"), NodePath("../Head"), NodePath("../Helmet"), NodePath("../Shield")]
 Unit = NodePath("..")
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=1635388551]
+[node name="Area2D" type="Area2D" parent="." index="1" unique_id=500566714]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" unique_id=1682306750]
+shape = SubResource("CircleShape2D_sdmle")
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=1635388551]
 shape = SubResource("CapsuleShape2D_grgi1")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="2" unique_id=1298645331]
+[node name="Sprite2D" type="Sprite2D" parent="." index="3" unique_id=1298645331]
 position = Vector2(0, 15)
 texture = ExtResource("3_nx1nd")
 region_enabled = true
 region_rect = Rect2(64, 32, 32, 32)
 
-[node name="noga" type="Sprite2D" parent="." index="3" unique_id=428792006]
+[node name="noga" type="Sprite2D" parent="." index="4" unique_id=428792006]
 position = Vector2(-5, 16)
 texture = ExtResource("3_nx1nd")
 region_enabled = true
 region_rect = Rect2(4, 99, 8, 10)
 
-[node name="noga2" type="Sprite2D" parent="." index="4" unique_id=1771484875]
+[node name="noga2" type="Sprite2D" parent="." index="5" unique_id=1771484875]
 position = Vector2(5, 16)
 texture = ExtResource("3_nx1nd")
 region_enabled = true
 region_rect = Rect2(20, 99, 8, 10)
 
-[node name="Torso" type="Sprite2D" parent="." index="5" unique_id=131116186]
+[node name="Torso" type="Sprite2D" parent="." index="6" unique_id=131116186]
 texture = SubResource("AtlasTexture_tmvv3")
 
-[node name="Head" type="Sprite2D" parent="." index="6" unique_id=815948174]
+[node name="Head" type="Sprite2D" parent="." index="7" unique_id=815948174]
 position = Vector2(1, -13)
 texture = SubResource("AtlasTexture_0rs8x")
 
-[node name="Helmet" type="Sprite2D" parent="." index="7" unique_id=678707986]
+[node name="Helmet" type="Sprite2D" parent="." index="8" unique_id=678707986]
 position = Vector2(2, -17)
 texture = SubResource("AtlasTexture_sdmle")
 
-[node name="Shield" type="Sprite2D" parent="." index="8" unique_id=445479115]
+[node name="Shield" type="Sprite2D" parent="." index="9" unique_id=445479115]
 position = Vector2(8, 5.000001)
 rotation = -0.62133723
 skew = 0.52883476
 texture = SubResource("AtlasTexture_grgi1")
 
-[node name="Weapon" parent="." index="9" unique_id=1018972646 instance=ExtResource("4_m5p41")]
+[node name="Weapon" parent="." index="10" unique_id=1018972646 instance=ExtResource("4_m5p41")]
+Resource = ExtResource("7_a4ns2")
+
+[node name="AI" parent="." index="11" unique_id=831052018 node_paths=PackedStringArray("_unit", "Eyes") instance=ExtResource("7_m5p41")]
+_unit = NodePath("..")
+Eyes = NodePath("../Area2D")

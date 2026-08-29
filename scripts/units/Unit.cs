@@ -51,6 +51,7 @@ public partial class Unit : CharacterBody2D
         }else {
             Armor -= damage;
         }
+        EmitSignalDamageTaken(damage,  (int)data.Element);
     }
 
     public virtual void ExecuteDie()

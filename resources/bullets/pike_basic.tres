@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BulletResource" format=3 uid="uid://dcsa0ekster5p"]
+
+[ext_resource type="Texture2D" uid="uid://0o7r1o0x0n8u" path="res://assets/bullets/close/Pike1.png" id="1_0k7ii"]
+[ext_resource type="Script" uid="uid://2n1ds6egi5q2" path="res://scripts/bullets/BulletResource.cs" id="1_ed4qy"]
+[ext_resource type="Texture2D" uid="uid://cpysrxlglxrgp" path="res://assets/bullets/close/Pike2.png" id="2_fejbw"]
+[ext_resource type="Texture2D" uid="uid://c1udnm13s78mo" path="res://assets/bullets/close/Pike3.png" id="3_7gb6v"]
+[ext_resource type="Texture2D" uid="uid://dqch4vqd6ytk5" path="res://assets/bullets/close/Pike4.png" id="4_62eqj"]
+[ext_resource type="Texture2D" uid="uid://cddsgvo2sdfgl" path="res://assets/bullets/close/Pike5.png" id="5_fy84p"]
+
+[resource]
+script = ExtResource("1_ed4qy")
+Texture = Array[Texture2D]([ExtResource("1_0k7ii"), ExtResource("2_fejbw"), ExtResource("3_7gb6v"), ExtResource("4_62eqj"), ExtResource("5_fy84p")])
+AnimationSpeed = 5.0
+Damage = 15.0
+Speed = 60.0
+Lifetime = 0.5
+PierceCount = 3.0
+CollisionRadius = 50.0
+metadata/_custom_type_script = "uid://2n1ds6egi5q2"

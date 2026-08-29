@@ -26,8 +26,10 @@ public partial class Ai : Node2D
 	[Export] public UnitBehavior Behavior;
 	[Export] public float BetweenActionTime = 2.5f;
 	[Export] public Area2D Eyes;
+	
 
 	[Export] private Vector2[] _patrolPoints = [];
+	[Export] public bool Overrider = false;
 	private int _patrolPointIndex = 0;
 	private float _actionTime = 0f;
 	private PlayerController _player;
@@ -39,8 +41,33 @@ public partial class Ai : Node2D
 	
 	public override void _Ready()
 	{
+		if (Overrider)
+			foreach (var n in GetParent().GetChildren())
+				if (n is Ai { Overrider: false } ai) {
+					Eyes = ai.Eyes;
+					ai.QueueFree();
+				}
+		
 		Eyes.BodyEntered += EyeCheck;
 		Eyes.BodyExited += EyeExitCheck;
+		_unit.DamageTaken += Damaged;
+		
+		_movePos = _unit.GlobalPosition;
+	}
+
+	void Damaged(float damage, int f)
+	{
+		if (UnitAction == ActionType.Sleep) UnitAction = ActionType.Idle;
+		var pP = _player?.GlobalPosition ?? Vector2.Zero;
+		var moveVector = 100 * (_unit.GlobalPosition - pP).Normalized();
+		if (Behavior is UnitBehavior.PassiveAnimal or UnitBehavior.Passive) {
+			UnitAction = ActionType.Move;
+			_movePos = _unit.GlobalPosition + moveVector;
+		}else {
+			UnitAction = ActionType.Attack;
+			_movePos = _unit.GlobalPosition - moveVector;
+		}
+		_actionTime = 0f;
 	}
 
 	private void EyeCheck(Node2D body)
@@ -59,10 +86,11 @@ public partial class Ai : Node2D
 			_player = null;
 			return;
 		}
-		Behavior = UnitBehavior.Aggressive;
-		_movePos = _player.Position;
+		if (_player != null)
+			_movePos = _player.GlobalPosition;
 		_player = null;
 		if (UnitAction == ActionType.Sleep)  return;
+		Behavior = UnitBehavior.Aggressive;
 		IsPlayerClose = false;
 		UnitAction = ActionType.Move;
 		
@@ -73,41 +101,48 @@ public partial class Ai : Node2D
 		float dt = (float)delta;
 		_actionTime += dt;
 		if (_actionTime >= BetweenActionTime) {
+			if (UnitAction is ActionType.Idle or ActionType.Move)
+				UnitAction = UnitAction == ActionType.Idle ? ActionType.Move : ActionType.Idle;
 			switch (Behavior) {
 				case UnitBehavior.Patrol:
-					if (UnitAction == ActionType.Idle)
-						UnitAction = ActionType.Move;
-					else if (UnitAction == ActionType.Move) {
-						UnitAction = ActionType.Idle;
-						_patrolPointIndex = (_patrolPointIndex + 1) % _patrolPoints.Length;
-						_movePos = _patrolPoints[_patrolPointIndex];
-					} break;
+					if (_patrolPoints.Length <= 0) break;
+					_patrolPointIndex = (_patrolPointIndex + 1) % _patrolPoints.Length;
+					_movePos = _patrolPoints[_patrolPointIndex];
+					 break;
 				case UnitBehavior.Animal: case UnitBehavior.Passive:
-					if (UnitAction == ActionType.Idle) {
-						UnitAction = ActionType.Move;
-						_movePos = Position + Vector2.FromAngle(GD.Randf() * Mathf.Tau);
-					}
-					else if (UnitAction == ActionType.Move)
-						UnitAction = ActionType.Idle;
+					_movePos = _unit.GlobalPosition + 50 * Vector2.FromAngle(GD.Randf() * Mathf.Tau);
 					break;
 			}
-			if (_unit.Weapon.Resource != null)
-				_unit.Weapon.ExecuteShoot((_unit.Position - _player.Position).Angle(), _unit);
+			if (_player != null && _unit.Weapon?.Resource != null && UnitAction == ActionType.Attack) 
+				_unit.Weapon.ExecuteShoot((_player.GlobalPosition - _unit.GlobalPosition).Angle(), _unit);
 			_actionTime = 0f;
 		}
 		
-		MoveBehavior(dt);
+		MoveBehavior();
 		_unit.MoveAndSlide();
 	}
 
-	void MoveBehavior(float dt)
+	void MoveBehavior()
 	{
-		_unit.Velocity = (_unit.Position - _movePos).Normalized() * _unit.Speed;
+		if (UnitAction is ActionType.Move or ActionType.Attack)
+		{
+			if (_unit.GlobalPosition.DistanceSquaredTo(_movePos) > 10f) 
+				_unit.Velocity = (_movePos - _unit.GlobalPosition).Normalized() * _unit.Speed;
+			else {
+				_unit.Velocity = Vector2.Zero;
+				if (UnitAction == ActionType.Move && Behavior != UnitBehavior.Patrol) 
+					UnitAction = ActionType.Idle;
+			}
+		}
+		else _unit.Velocity = Vector2.Zero;
+		
 	}
 	
 	public override void _ExitTree()
 	{
 		Eyes.BodyEntered -= EyeCheck;
 		Eyes.BodyExited -= EyeExitCheck;
+		if (_unit != null) 
+			_unit.DamageTaken -= Damaged;
 	}
 }

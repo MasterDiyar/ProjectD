@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://ic6hwbkr8ehe"]
+
+[ext_resource type="Texture2D" uid="uid://cerp1mhv6rjuy" path="res://assets/weapons/small_goblin_pike.png" id="1_g2w42"]
+[ext_resource type="Script" uid="uid://cvqkhty8vm1jn" path="res://scripts/weapon/WeaponResource.cs" id="1_m7vuf"]
+[ext_resource type="Animation" uid="uid://dqstj8iw8p8xx" path="res://resources/anims/pikes/onAttack.res" id="1_o4tbn"]
+[ext_resource type="Resource" uid="uid://dcsa0ekster5p" path="res://resources/bullets/pike_basic.tres" id="1_qxsmh"]
+[ext_resource type="Animation" uid="uid://kdwjv8mlftow" path="res://resources/anims/pikes/onIdle.res" id="3_ygvyo"]
+
+[resource]
+script = ExtResource("1_m7vuf")
+Texture = Array[Texture2D]([ExtResource("1_g2w42")])
+BulletCount = 1
+Bullet = ExtResource("1_qxsmh")
+BulletScale = 0.5
+AttackSpeed = 2.0
+AttackAnimation = ExtResource("1_o4tbn")
+IdleAnimation = ExtResource("3_ygvyo")
+metadata/_custom_type_script = "uid://cvqkhty8vm1jn"

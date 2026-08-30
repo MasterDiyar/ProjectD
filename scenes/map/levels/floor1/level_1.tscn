@@ -8,6 +8,8 @@
 [ext_resource type="Resource" uid="uid://dlr20d8dwgof3" path="res://resources/weapons/rusty_sword.tres" id="5_0o1j4"]
 [ext_resource type="Resource" uid="uid://cqfsqgp4gmmgy" path="res://resources/weapons/iron_moons.tres" id="6_0o1j4"]
 [ext_resource type="Resource" uid="uid://ic6hwbkr8ehe" path="res://resources/weapons/goblin_pike.tres" id="8_wfq1s"]
+[ext_resource type="PackedScene" uid="uid://5ymwjjx1g1qw" path="res://scenes/units/soul/soul_container.tscn" id="9_rec3e"]
+[ext_resource type="Resource" uid="uid://dxxcwcn7emffj" path="res://resources/souls/test_soul.tres" id="10_0112o"]
 
 [node name="Level1" type="Node2D" unique_id=489502560]
 texture_filter = 3
@@ -46,3 +48,7 @@ ItemResource = ExtResource("6_0o1j4")
 [node name="FallenItem3" parent="." unique_id=808163625 instance=ExtResource("4_dyaw2")]
 position = Vector2(-243, 93)
 ItemResource = ExtResource("8_wfq1s")
+
+[node name="SoulContainer" parent="." unique_id=1832285923 instance=ExtResource("9_rec3e")]
+position = Vector2(223, -16)
+Soul = ExtResource("10_0112o")

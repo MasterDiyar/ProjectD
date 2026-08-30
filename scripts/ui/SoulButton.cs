@@ -38,9 +38,11 @@ public partial class SoulButton : Button
     
     public void SetSoul(Soul soul)
     {
+        Soul = soul;
         Text = Soul.SoulName;
         TooltipText = Soul.SoulDescription;
         SoulIcon.Texture = Soul.UnitTexture;
         Icon = Soul.SoulTexture;
+        Visible = true;
     }
 }

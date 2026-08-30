@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Linq;
+using Godot;
 using ProjectD.scripts.player;
 
 namespace ProjectD.scripts.ui;
@@ -22,6 +23,8 @@ public partial class PlayerUI : Control
     {
         player.SoulAdded += AddSoul;
         player.HealthChanged += HealthChanged;
+        if (SoulButtons.Length <= 0)
+            SoulButtons = SoulsContainer.GetChildren().OfType<SoulButton>().ToArray();
     }
 
     private void HealthChanged(float currentHp, float maxHp)
@@ -33,6 +36,8 @@ public partial class PlayerUI : Control
 
     public void AddSoul(Soul soul, int where)
     {
+        GD.Print(where, SoulButtons.Length);
+        if (SoulButtons.Length <= where) return;
         SoulButtons[where].SetSoul(soul);
     }
 

@@ -13,6 +13,8 @@ public partial class SoulContainer : Area2D
 	{
 		BodyEntered += OnBodyEntered;
 		BodyExited += OnBodyExited;
+		SoulSprite.Texture = Soul.SoulTexture;
+		UnitSprite.Texture = Soul.UnitTexture;
 	}
 
 	private void OnBodyEntered(Node2D body)
@@ -32,5 +34,6 @@ public partial class SoulContainer : Area2D
 	{
 		if (!evt.IsActionPressed("f") || !CanObtain) return;
 		Player.AddSoul(Soul);
+		QueueFree();
 	}
 }

@@ -61,12 +61,18 @@ public partial class Unit : CharacterBody2D
 
     public virtual void AddSoulStats(Soul soul)
     {
-        Hp = Stats.BaseHp + soul.SoulStats.BaseHp;
+        MaxHp = Stats.BaseHp + soul.SoulStats.BaseHp;
         MaxArmor = Stats.BaseArmor + soul.SoulStats.BaseArmor;
         Damage = Stats.BaseDamage + soul.SoulStats.BaseDamage;
-        Speed = Stats.BaseSpeed + soul.SoulStats.BaseSpeed;
-        Mana = Stats.BaseMana + soul.SoulStats.BaseMana;
+        MaxSpeed = Stats.BaseSpeed + soul.SoulStats.BaseSpeed;
+        MaxMana = Stats.BaseMana + soul.SoulStats.BaseMana;
         KritChance = Stats.BaseKritChance + soul.SoulStats.BaseKritChance;
         KritModifier = Stats.BaseKritModifier + soul.SoulStats.BaseKritModifier; 
+        
+        Speed = Mathf.Min(Speed + soul.SoulStats.BaseSpeed, MaxSpeed);
+        Mana = Mathf.Min(Mana + soul.SoulStats.BaseMana, MaxMana);
+        Hp = Mathf.Min(Hp + soul.SoulStats.BaseHp, MaxHp);
+        Armor = Mathf.Min(Armor + soul.SoulStats.BaseArmor, MaxArmor);
+        UnitElement = soul.SoulElement;
     }
 }

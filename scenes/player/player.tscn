@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b77qf1gmk5wxb" path="res://scripts/units/UnitStats.cs" id="2_lvxji"]
 [ext_resource type="Texture2D" uid="uid://biefj5hxrv24q" path="res://assets/units/goblin_atlas.png" id="3_p47bc"]
 [ext_resource type="PackedScene" uid="uid://clh8rfmt6leu8" path="res://scenes/weapon/weapon.tscn" id="4_p47bc"]
+[ext_resource type="Shader" uid="uid://g2mstk06rsgt" path="res://shaders/units/player.gdshader" id="5_je7p5"]
 [ext_resource type="Texture2D" uid="uid://j676d0n74pes" path="res://assets/player/playtest_doll1.png" id="6_je7p5"]
 [ext_resource type="Texture2D" uid="uid://bana064iohuvd" path="res://assets/player/playtest_doll2.png" id="7_fm80t"]
 [ext_resource type="Texture2D" uid="uid://srcoaximuauu" path="res://assets/player/playtest_doll3.png" id="8_gx1jg"]
@@ -22,6 +23,12 @@ region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p47bc"]
 height = 50.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_67waw"]
+shader = ExtResource("5_je7p5")
+shader_parameter/use_gradient = false
+shader_parameter/solid_color = Color(1, 0, 0, 1)
+shader_parameter/threshold = 0.95
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sdmle"]
 animations = [{
@@ -59,6 +66,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" unique_id=403161475 node_paths=PackedStringArray("_camera", "HandNode", "AnimSprite", "Weapon")]
 texture_filter = 3
+motion_mode = 1
 script = ExtResource("1_dovo2")
 _camera = NodePath("Camera2D")
 HandNode = NodePath("Hand")
@@ -81,6 +89,7 @@ zoom = Vector2(2, 2)
 [node name="Weapon" parent="Hand" unique_id=1254949922 instance=ExtResource("4_p47bc")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=119759789]
+material = SubResource("ShaderMaterial_67waw")
 sprite_frames = SubResource("SpriteFrames_sdmle")
-animation = &"idle"
-frame_progress = 0.5078135
+animation = &"move"
+frame_progress = 0.5966507

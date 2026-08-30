@@ -82,7 +82,7 @@ public partial class PlayerController : Unit
         AnimSprite.Play((direction.Length() < 0.1f) ? "idle":"move");
         AnimSprite.FlipH = direction.X < 0;
         Weapon.Scale = new Vector2(AnimSprite.FlipH ? -1 : 1, 1);
-        Velocity = direction * (Stats?.BaseSpeed ?? 300f);
+        Velocity = direction * Speed;
         MoveAndSlide();
     }
 
@@ -151,10 +151,15 @@ public partial class PlayerController : Unit
 
     public void AddSoul(Soul soul)
     {
-        _souls.Add(soul);
-        if  (_souls.Count == 1)
-            
-        EmitSignal(SignalName.ItemAdded, soul);
+        if (_souls.Count < 7) {
+            _souls.Add(soul);
+            EmitSignal(SignalName.SoulAdded, soul, _souls.Count-1);
+        }else {
+            _souls[CurrentSoulIndex] = soul;
+            EmitSignal(SignalName.SoulAdded, soul, CurrentSoulIndex);
+        }
+        if (_souls.Count == 1)
+            SetSoul(CurrentSoulIndex);
     }
 
     private void SwitchSoul(int direction)
@@ -162,8 +167,27 @@ public partial class PlayerController : Unit
         if (_souls.Count == 0) return;
         
         CurrentSoulIndex = (CurrentSoulIndex + direction % _souls.Count + _souls.Count) % _souls.Count;
+        SetSoul(CurrentSoulIndex);
         EmitSignal(SignalName.SoulChanged, CurrentSoulIndex);
     }
+
+    void SetSoul(int index) {
+        GD.Print(_souls[index].SoulName," added");
+        var shader = (ShaderMaterial)AnimSprite.Material.Duplicate();
+        AnimSprite.Material = shader;
+        AddSoulStats(_souls[index]);
+        var element = Elements.GetElement(UnitElement); 
+        var gradient = new Gradient();
+        gradient.Offsets = [0.0f, 0.5f, 1.0f];
+        gradient.Colors = [element.ElementColor, element.SecondColor, element.ThirdColor];
+
+        var gradientTexture = new GradientTexture1D();
+        gradientTexture.Gradient = gradient;
+
+        shader.SetShaderParameter("use_gradient", true);
+        shader.SetShaderParameter("gradient_texture", gradientTexture);
+    }
+    
 
     private void SwitchWeapon(int direction)
     {

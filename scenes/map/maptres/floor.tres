@@ -102,6 +102,14 @@ texture = ExtResource("1_if47k")
 3:10/0 = 0
 3:11/0 = 0
 2:11/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+7:3/0 = 0
+6:3/0 = 0
+5:3/0 = 0
+4:3/0 = 0
 
 [resource]
 sources/0 = SubResource("TileSetAtlasSource_a2svh")

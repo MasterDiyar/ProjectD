@@ -16,6 +16,7 @@ public partial class WeaponResource : Resource
     [Export] public float OffsetSpawn;
     [Export] public float SpreadAngle;
     [Export] public float SpawnTimeOffset=0;
+    [Export] public int ZIndex = 0;
     
     [ExportGroup("Animations")]
     [Export] public Animation AttackAnimation, IdleAnimation, UltimateAnimation;

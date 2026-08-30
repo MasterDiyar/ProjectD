@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://fqdhm5udry3b" path="res://scenes/weapon/fallen_item.tscn" id="4_dyaw2"]
 [ext_resource type="Resource" uid="uid://dlr20d8dwgof3" path="res://resources/weapons/rusty_sword.tres" id="5_0o1j4"]
 [ext_resource type="Resource" uid="uid://cqfsqgp4gmmgy" path="res://resources/weapons/iron_moons.tres" id="6_0o1j4"]
+[ext_resource type="Resource" uid="uid://ic6hwbkr8ehe" path="res://resources/weapons/goblin_pike.tres" id="8_wfq1s"]
 
 [node name="Level1" type="Node2D" unique_id=489502560]
 texture_filter = 3
@@ -41,3 +42,7 @@ ItemResource = ExtResource("5_0o1j4")
 [node name="FallenItem2" parent="." unique_id=644317630 instance=ExtResource("4_dyaw2")]
 position = Vector2(8.355347, 106.02712)
 ItemResource = ExtResource("6_0o1j4")
+
+[node name="FallenItem3" parent="." unique_id=808163625 instance=ExtResource("4_dyaw2")]
+position = Vector2(-243, 93)
+ItemResource = ExtResource("8_wfq1s")

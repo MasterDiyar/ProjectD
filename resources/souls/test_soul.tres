@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Soul" format=3 uid="uid://dxxcwcn7emffj"]
+
+[ext_resource type="Script" uid="uid://b77qf1gmk5wxb" path="res://scripts/units/UnitStats.cs" id="1_exjg1"]
+[ext_resource type="Script" uid="uid://dj8qwl7hwtyjf" path="res://scripts/player/Soul.cs" id="1_vt867"]
+[ext_resource type="Texture2D" uid="uid://biefj5hxrv24q" path="res://assets/units/goblin_atlas.png" id="2_f475o"]
+
+[sub_resource type="Resource" id="Resource_pr2xw"]
+script = ExtResource("1_exjg1")
+BaseHp = 20.0
+BaseArmor = 10.0
+BaseDamage = 0.0
+BaseSpeed = 400.0
+BaseKritModifier = 0.3
+metadata/_custom_type_script = "uid://b77qf1gmk5wxb"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yhfkp"]
+load_path = "res://.godot/imported/base_ui.png-7743845aac9f0f7496f16d4354fb733d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqhf3"]
+atlas = SubResource("CompressedTexture2D_yhfkp")
+region = Rect2(32, 80, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qm4c"]
+atlas = ExtResource("2_f475o")
+region = Rect2(64, 96, 32, 32)
+
+[resource]
+script = ExtResource("1_vt867")
+SoulElement = 1
+SoulStats = SubResource("Resource_pr2xw")
+SoulTexture = SubResource("AtlasTexture_jqhf3")
+UnitTexture = SubResource("AtlasTexture_7qm4c")
+SoulName = "Hydro "
+metadata/_custom_type_script = "uid://dj8qwl7hwtyjf"

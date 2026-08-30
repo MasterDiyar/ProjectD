@@ -138,8 +138,7 @@ public partial class PlayerController : Unit
 
     public override void ExecuteDie()
     {
-        Game.Instance.QueueFree();
-        GetTree().Root.AddChild(GD.Load<PackedScene>("res://scenes/game.tscn").Instantiate<Game>());   
+        Hp = 125;
     }
 
     public void AddWeapon(WeaponResource weapon)

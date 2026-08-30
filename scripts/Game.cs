@@ -23,4 +23,9 @@ public partial class Game : Node2D
 			PausedLabel.Visible = isPaused;
 		}
 	}
+
+	public void SpawnNode(Node2D node)
+	{
+		Pausable.AddChild(node);
+	}
 }

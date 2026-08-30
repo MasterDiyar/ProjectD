@@ -34,7 +34,7 @@ public partial class Ai : Node2D
 	private float _actionTime = 0f;
 	private PlayerController _player;
 	private Vector2 _movePos;
-	
+	private UnitBehavior prevBehavior;
 	
 	public ActionType UnitAction = ActionType.Idle;
 	public bool IsPlayerClose = false;
@@ -132,6 +132,8 @@ public partial class Ai : Node2D
 				_unit.Velocity = Vector2.Zero;
 				if (UnitAction == ActionType.Move && Behavior != UnitBehavior.Patrol) 
 					UnitAction = ActionType.Idle;
+				if (Behavior == UnitBehavior.Aggressive && _player != null)
+					Behavior = UnitBehavior.Passive;
 			}
 		}
 		else _unit.Velocity = Vector2.Zero;

@@ -65,6 +65,7 @@ public partial class Weapon : Node2D
         lib.AddAnimation("onIdle", Resource.IdleAnimation);
         Animator.Play("onIdle");
         _defaultPosition = Position;
+        ZIndex = resource.ZIndex;
     }
     public async Task ExecuteShoot(float angle, Unit unit)
     {
@@ -92,13 +93,13 @@ public partial class Weapon : Node2D
         {
             Bullet bullet = _bulletScene.Instantiate<Bullet>();
             bullet.Rotation = Resource.OffsetAngle + angle + i * Resource.BetweenAngle;
-            bullet.Position = unit.Position + Vector2.FromAngle(bullet.Rotation) * Resource.OffsetSpawn;
+            bullet.GlobalPosition = unit.GlobalPosition + Vector2.FromAngle(bullet.Rotation) * Resource.OffsetSpawn;
             bullet.Mother = unit;
             bullet.WeaponType = Type;
             bullet += Resource.Bullet;
-            bullet.Scale = Vector2.One * Resource.BulletScale;
+            bullet.GlobalScale = Vector2.One * Resource.BulletScale;
             
-            unit.GetParent().AddChild(bullet);
+            Game.Instance.SpawnNode(bullet);
         }
     }
 

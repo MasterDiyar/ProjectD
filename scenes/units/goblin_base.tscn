@@ -142,7 +142,7 @@ Add = PackedFloat32Array(60, 90, 0)
 metadata/_custom_type_script = "uid://cwtwg5bguyt68"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sdmle"]
-radius = 105.0
+radius = 129.00388
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_grgi1"]
 radius = 11.0

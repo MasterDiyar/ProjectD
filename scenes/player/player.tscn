@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cariw5xsjhftc" path="res://scripts/player/PlayerController.cs" id="1_dovo2"]
 [ext_resource type="Script" uid="uid://b77qf1gmk5wxb" path="res://scripts/units/UnitStats.cs" id="2_lvxji"]
-[ext_resource type="Texture2D" uid="uid://igxowd02vyf5" path="res://assets/player/playtest_doll.png" id="3_gmlin"]
 [ext_resource type="Texture2D" uid="uid://biefj5hxrv24q" path="res://assets/units/goblin_atlas.png" id="3_p47bc"]
 [ext_resource type="PackedScene" uid="uid://clh8rfmt6leu8" path="res://scenes/weapon/weapon.tscn" id="4_p47bc"]
 [ext_resource type="Texture2D" uid="uid://j676d0n74pes" path="res://assets/player/playtest_doll1.png" id="6_je7p5"]
@@ -77,10 +76,6 @@ shape = SubResource("CapsuleShape2D_p47bc")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=92137468]
 zoom = Vector2(2, 2)
 
-[node name="PlaytestDoll" type="Sprite2D" parent="." unique_id=1617325837]
-visible = false
-texture = ExtResource("3_gmlin")
-
 [node name="Hand" type="Node2D" parent="." unique_id=28049045]
 
 [node name="Weapon" parent="Hand" unique_id=1254949922 instance=ExtResource("4_p47bc")]
@@ -88,4 +83,4 @@ texture = ExtResource("3_gmlin")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=119759789]
 sprite_frames = SubResource("SpriteFrames_sdmle")
 animation = &"idle"
-frame_progress = 0.26362166
+frame_progress = 0.5078135

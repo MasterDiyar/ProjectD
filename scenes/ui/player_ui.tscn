@@ -124,21 +124,27 @@ layout_mode = 2
 
 [node name="SoulButton2" parent="MarginContainer/Control/VBoxContainer" unique_id=1359287657 instance=ExtResource("2_jg20v")]
 layout_mode = 2
+Placement = 1
 
 [node name="SoulButton3" parent="MarginContainer/Control/VBoxContainer" unique_id=72968131 instance=ExtResource("2_jg20v")]
 layout_mode = 2
+Placement = 2
 
 [node name="SoulButton4" parent="MarginContainer/Control/VBoxContainer" unique_id=1528621092 instance=ExtResource("2_jg20v")]
 layout_mode = 2
+Placement = 3
 
 [node name="SoulButton5" parent="MarginContainer/Control/VBoxContainer" unique_id=1995865415 instance=ExtResource("2_jg20v")]
 layout_mode = 2
+Placement = 4
 
 [node name="SoulButton6" parent="MarginContainer/Control/VBoxContainer" unique_id=1769216993 instance=ExtResource("2_jg20v")]
 layout_mode = 2
+Placement = 5
 
 [node name="SoulButton7" parent="MarginContainer/Control/VBoxContainer" unique_id=1903718016 instance=ExtResource("2_jg20v")]
 layout_mode = 2
+Placement = 6
 
 [node name="ManaBar" type="ProgressBar" parent="MarginContainer/Control" unique_id=1602891032]
 layout_mode = 0

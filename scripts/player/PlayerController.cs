@@ -171,7 +171,9 @@ public partial class PlayerController : Unit
         EmitSignal(SignalName.SoulChanged, CurrentSoulIndex);
     }
 
-    void SetSoul(int index) {
+    
+
+    public void SetSoul(int index) {
         GD.Print(_souls[index].SoulName," added");
         var shader = (ShaderMaterial)AnimSprite.Material.Duplicate();
         AnimSprite.Material = shader;

@@ -25,6 +25,9 @@ public partial class PlayerUI : Control
         player.HealthChanged += HealthChanged;
         if (SoulButtons.Length <= 0)
             SoulButtons = SoulsContainer.GetChildren().OfType<SoulButton>().ToArray();
+        foreach (var btn in SoulButtons)
+            btn.Pressed += () =>
+                player.SetSoul(btn.Placement);
     }
 
     private void HealthChanged(float currentHp, float maxHp)

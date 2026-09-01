@@ -8,6 +8,7 @@ public partial class SoulButton : Button
     [Export] public Soul Soul;
 
     [Export] public TextureRect SoulIcon;
+    [Export] public int Placement;
     private Vector2 pos;
 
     public override void _Ready()

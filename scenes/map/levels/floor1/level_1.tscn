@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://ic6hwbkr8ehe" path="res://resources/weapons/goblin_pike.tres" id="8_wfq1s"]
 [ext_resource type="PackedScene" uid="uid://5ymwjjx1g1qw" path="res://scenes/units/soul/soul_container.tscn" id="9_rec3e"]
 [ext_resource type="Resource" uid="uid://dxxcwcn7emffj" path="res://resources/souls/test_soul.tres" id="10_0112o"]
+[ext_resource type="Resource" uid="uid://bnt553lxhjbnj" path="res://resources/souls/second_testosr.tres" id="11_0112o"]
 
 [node name="Level1" type="Node2D" unique_id=489502560]
 texture_filter = 3
@@ -24,13 +25,14 @@ tile_set = ExtResource("1_w1ah7")
 [node name="StaticBody2D" type="StaticBody2D" parent="Floors/TileMapLayer" unique_id=1752636953]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floors/TileMapLayer/StaticBody2D" unique_id=1538955871]
-polygon = PackedVector2Array(-873, -532.5, 2172.5, -469, 2067, 1397.5, -908, 1461.5, -873, -532.5, -688, -368, -688, 1248.5, 1936, 1248, 1936, -368, -688, -368)
+polygon = PackedVector2Array(-873, -532.5, 2189.5, -542.5, 2181.5, 1479, -865.5, 1464, -873, -532.5, -688, -368, -688, 1248.5, 1936, 1248, 1936, -368, -688, -368)
 
 [node name="Marker2D" type="Marker2D" parent="Floors" unique_id=1502990681]
-position = Vector2(178, 98.5)
+position = Vector2(-93.5, -226.5)
 scale = Vector2(0.5, 0.5)
 
 [node name="Player" parent="." unique_id=403161475 instance=ExtResource("1_7uo7r")]
+position = Vector2(-895, -463)
 
 [node name="FloorSpawner" parent="." unique_id=2000616467 node_paths=PackedStringArray("SpawnPoints", "WhereToSpawn") instance=ExtResource("2_w63ba")]
 SpawnPoints = [NodePath("../Floors/Marker2D")]
@@ -38,17 +40,21 @@ FloorScenes = Array[PackedScene]([ExtResource("3_dyaw2")])
 WhereToSpawn = NodePath("../Floors")
 
 [node name="FallenItem" parent="." unique_id=280327951 instance=ExtResource("4_dyaw2")]
-position = Vector2(103.249756, 55.435318)
+position = Vector2(-791.75024, -407.5647)
 ItemResource = ExtResource("5_0o1j4")
 
 [node name="FallenItem2" parent="." unique_id=644317630 instance=ExtResource("4_dyaw2")]
-position = Vector2(8.355347, 106.02712)
+position = Vector2(-886.64465, -356.97287)
 ItemResource = ExtResource("6_0o1j4")
 
 [node name="FallenItem3" parent="." unique_id=808163625 instance=ExtResource("4_dyaw2")]
-position = Vector2(-243, 93)
+position = Vector2(-1138, -370)
 ItemResource = ExtResource("8_wfq1s")
 
 [node name="SoulContainer" parent="." unique_id=1832285923 instance=ExtResource("9_rec3e")]
-position = Vector2(223, -16)
+position = Vector2(-672, -479)
 Soul = ExtResource("10_0112o")
+
+[node name="SoulContainer2" parent="." unique_id=1027829536 instance=ExtResource("9_rec3e")]
+position = Vector2(-768, -604)
+Soul = ExtResource("11_0112o")

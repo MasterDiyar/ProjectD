@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Soul" format=3 uid="uid://bnt553lxhjbnj"]
+
+[ext_resource type="Script" uid="uid://dj8qwl7hwtyjf" path="res://scripts/player/Soul.cs" id="1_mp270"]
+[ext_resource type="Script" uid="uid://b77qf1gmk5wxb" path="res://scripts/units/UnitStats.cs" id="1_sdqs7"]
+[ext_resource type="Texture2D" uid="uid://q1dxx8kl4ehc" path="res://assets/worldmap_tiles/first_level_totems.png" id="2_ykr4c"]
+
+[sub_resource type="Resource" id="Resource_wt1t5"]
+script = ExtResource("1_sdqs7")
+BaseSpeed = -80.0
+metadata/_custom_type_script = "uid://b77qf1gmk5wxb"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gq4ne"]
+load_path = "res://.godot/imported/base_ui.png-7743845aac9f0f7496f16d4354fb733d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dtd8"]
+atlas = SubResource("CompressedTexture2D_gq4ne")
+region = Rect2(64, 80, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4phot"]
+atlas = ExtResource("2_ykr4c")
+region = Rect2(48, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_mp270")
+SoulElement = 2
+SoulStats = SubResource("Resource_wt1t5")
+SoulTexture = SubResource("AtlasTexture_7dtd8")
+UnitTexture = SubResource("AtlasTexture_4phot")
+SoulName = "Metall WOod"
+SoulDescription = "hz"
+metadata/_custom_type_script = "uid://dj8qwl7hwtyjf"

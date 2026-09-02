@@ -13,6 +13,7 @@ BulletCount = 1
 Bullet = ExtResource("1_4vrmo")
 BulletScale = 1.5
 AttackSpeed = 1.6
+ZIndex = 1
 AttackAnimation = ExtResource("1_tdva3")
 IdleAnimation = ExtResource("3_csqqv")
 metadata/_custom_type_script = "uid://cvqkhty8vm1jn"

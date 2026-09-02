@@ -30,6 +30,7 @@ public partial class PlayerController : Unit
     [Export] public Node2D HandNode;
     [Export] public AnimatedSprite2D AnimSprite;
     [Export] public CpuParticles2D ChangeParticles;
+    [Export] public Sprite2D Head;
     
     private bool _inBattle = false;
     
@@ -78,11 +79,6 @@ public partial class PlayerController : Unit
     private float sin = 0;
     private void HandleMovement(float dt)
     {
-        sin += dt;
-        if (Weapon.CanShoot) {
-            Weapon.Position = 2 * Vector2.Up * Mathf.Sin(2*sin);
-            Weapon.Rotation = 0.1f * Mathf.Sin(2 * sin);
-        }
         Vector2 direction = Input.GetVector("a", "d", "w", "s");
         AnimSprite.Play((direction.Length() < 0.1f) ? "idle":"move");
         AnimSprite.FlipH = direction.X < 0;
@@ -183,8 +179,8 @@ public partial class PlayerController : Unit
 
     public void SetSoul(int index) {
         GD.Print(_souls[index].SoulName," added");
-        var shader = (ShaderMaterial)AnimSprite.Material.Duplicate();
-        AnimSprite.Material = shader;
+        var shader = (ShaderMaterial)Head.Material.Duplicate();
+        Head.Material = shader;
         AddSoulStats(_souls[index]);
         var element = Elements.GetElement(UnitElement); 
         var gradient = new Gradient();

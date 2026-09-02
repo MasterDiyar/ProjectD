@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://t802flk8ombc" path="res://scenes/map/levels/floor1/floor_1_1.tscn" id="3_dyaw2"]
 [ext_resource type="PackedScene" uid="uid://fqdhm5udry3b" path="res://scenes/weapon/fallen_item.tscn" id="4_dyaw2"]
 [ext_resource type="Resource" uid="uid://dlr20d8dwgof3" path="res://resources/weapons/rusty_sword.tres" id="5_0o1j4"]
+[ext_resource type="PackedScene" uid="uid://dvah5yr2tkv5c" path="res://scenes/map/levels/floor1/floor_1_2.tscn" id="5_aqbhm"]
 [ext_resource type="Resource" uid="uid://cqfsqgp4gmmgy" path="res://resources/weapons/iron_moons.tres" id="6_0o1j4"]
 [ext_resource type="Resource" uid="uid://ic6hwbkr8ehe" path="res://resources/weapons/goblin_pike.tres" id="8_wfq1s"]
 [ext_resource type="PackedScene" uid="uid://5ymwjjx1g1qw" path="res://scenes/units/soul/soul_container.tscn" id="9_rec3e"]
 [ext_resource type="Resource" uid="uid://dxxcwcn7emffj" path="res://resources/souls/test_soul.tres" id="10_0112o"]
 [ext_resource type="Resource" uid="uid://bnt553lxhjbnj" path="res://resources/souls/second_testosr.tres" id="11_0112o"]
+[ext_resource type="Resource" uid="uid://drao5eg4bnqqr" path="res://resources/souls/beginner_fire_goblin_soul.tres" id="12_67waw"]
 
 [node name="Level1" type="Node2D" unique_id=489502560]
 texture_filter = 3
@@ -33,12 +35,20 @@ polygon = PackedVector2Array(-873, -532.5, 2189.5, -542.5, 2181.5, 1479, -865.5,
 position = Vector2(-93.5, -226.5)
 scale = Vector2(0.5, 0.5)
 
+[node name="Marker2D2" type="Marker2D" parent="Floors" unique_id=418771993]
+position = Vector2(-296.9308, 397.62302)
+scale = Vector2(0.5, 0.5)
+
+[node name="Marker2D3" type="Marker2D" parent="Floors" unique_id=693523450]
+position = Vector2(61.5, 128.5)
+scale = Vector2(0.5, 0.5)
+
 [node name="Player" parent="." unique_id=403161475 instance=ExtResource("1_7uo7r")]
 position = Vector2(-1053, -540)
 
 [node name="FloorSpawner" parent="." unique_id=2000616467 node_paths=PackedStringArray("SpawnPoints", "WhereToSpawn") instance=ExtResource("2_w63ba")]
-SpawnPoints = [NodePath("../Floors/Marker2D")]
-FloorScenes = Array[PackedScene]([ExtResource("3_dyaw2")])
+SpawnPoints = [NodePath("../Floors/Marker2D"), NodePath("../Floors/Marker2D2"), NodePath("../Floors/Marker2D3")]
+FloorScenes = Array[PackedScene]([ExtResource("3_dyaw2"), ExtResource("5_aqbhm")])
 WhereToSpawn = NodePath("../Floors")
 
 [node name="FallenItem" parent="." unique_id=280327951 instance=ExtResource("4_dyaw2")]
@@ -60,3 +70,7 @@ Soul = ExtResource("10_0112o")
 [node name="SoulContainer2" parent="." unique_id=1027829536 instance=ExtResource("9_rec3e")]
 position = Vector2(-768, -604)
 Soul = ExtResource("11_0112o")
+
+[node name="SoulContainer3" parent="." unique_id=941646809 instance=ExtResource("9_rec3e")]
+position = Vector2(-1188.1797, -480.7773)
+Soul = ExtResource("12_67waw")

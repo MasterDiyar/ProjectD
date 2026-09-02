@@ -14,8 +14,10 @@ Particles = NodePath("CPUParticles2D")
 shape = SubResource("CircleShape2D_dsmmi")
 
 [node name="SoulSprite" type="Sprite2D" parent="." unique_id=926976303]
+modulate = Color(1, 1, 1, 0.45490196)
 
 [node name="UnitSprite" type="Sprite2D" parent="." unique_id=1812990044]
+modulate = Color(1, 1, 1, 0.24705882)
 position = Vector2(-6, 6)
 scale = Vector2(0.6, 0.6)
 

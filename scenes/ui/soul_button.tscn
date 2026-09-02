@@ -17,7 +17,7 @@ load_path = "res://.godot/imported/base_ui.png-7743845aac9f0f7496f16d4354fb733d.
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1gysn"]
 atlas = SubResource("CompressedTexture2D_x46sq")
-region = Rect2(0, 176, 64, 5)
+region = Rect2(0, 160, 64, 5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x46sq"]
 atlas = ExtResource("3_x46sq")
@@ -48,7 +48,7 @@ layout_mode = 0
 offset_left = 17.0
 offset_top = 39.0
 offset_right = 651.99994
-offset_bottom = 79.0
+offset_bottom = 54.0
 scale = Vector2(0.2, 0.2)
 texture = SubResource("AtlasTexture_1gysn")
 

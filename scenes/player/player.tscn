@@ -6,12 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://clh8rfmt6leu8" path="res://scenes/weapon/weapon.tscn" id="4_p47bc"]
 [ext_resource type="Shader" uid="uid://g2mstk06rsgt" path="res://shaders/units/player.gdshader" id="5_je7p5"]
 [ext_resource type="Texture2D" uid="uid://j676d0n74pes" path="res://assets/player/playtest_doll1.png" id="6_je7p5"]
+[ext_resource type="Texture2D" uid="uid://bjcw7h02kyw2a" path="res://assets/player/player_mummy1.png" id="6_lgqa7"]
 [ext_resource type="Texture2D" uid="uid://bana064iohuvd" path="res://assets/player/playtest_doll2.png" id="7_fm80t"]
+[ext_resource type="Texture2D" uid="uid://5x08dv7vgyjy" path="res://assets/player/player_mummy2.png" id="8_8ydkj"]
 [ext_resource type="Texture2D" uid="uid://srcoaximuauu" path="res://assets/player/playtest_doll3.png" id="8_gx1jg"]
+[ext_resource type="Texture2D" uid="uid://vr273xg51osc" path="res://assets/player/player_mummy3.png" id="9_3j4b4"]
 [ext_resource type="Texture2D" uid="uid://cudteqh6dn1yt" path="res://assets/player/playtest_doll4.png" id="9_ugbui"]
 [ext_resource type="Texture2D" uid="uid://diis2g5howsbn" path="res://assets/player/playtest_doll5.png" id="10_fcs02"]
+[ext_resource type="Texture2D" uid="uid://ctwk8hkqxyaaq" path="res://assets/player/player_mummy4.png" id="10_yj68g"]
+[ext_resource type="Texture2D" uid="uid://cafjux85qtrn4" path="res://assets/player/player_mummy5.png" id="11_ioxgp"]
 [ext_resource type="Texture2D" uid="uid://bxo8o7dy1yc25" path="res://assets/player/playtest_doll6.png" id="11_myrg7"]
+[ext_resource type="Texture2D" uid="uid://djl33e6lhlxup" path="res://assets/player/player_mummy6.png" id="12_cnsyf"]
 [ext_resource type="Texture2D" uid="uid://vyw01s5bsckh" path="res://assets/player/soul_particle.png" id="12_fm80t"]
+[ext_resource type="Texture2D" uid="uid://cxw44ljw77khv" path="res://assets/player/mummy_head.png" id="19_007i1"]
 
 [sub_resource type="Resource" id="Resource_lvxji"]
 script = ExtResource("2_lvxji")
@@ -23,7 +30,8 @@ atlas = ExtResource("3_p47bc")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p47bc"]
-height = 50.0
+radius = 14.0
+height = 48.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_67waw"]
 shader = ExtResource("5_je7p5")
@@ -35,11 +43,39 @@ shader_parameter/threshold = 0.95
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_je7p5")
+"texture": ExtResource("6_lgqa7")
 }],
 "loop": 1,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_je7p5")
+}],
+"loop": 1,
+"name": &"idle_D",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_8ydkj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3j4b4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_yj68g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ioxgp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_cnsyf")
+}],
+"loop": 1,
+"name": &"move",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -61,11 +97,11 @@ animations = [{
 "texture": ExtResource("11_myrg7")
 }],
 "loop": 1,
-"name": &"move",
+"name": &"move_D",
 "speed": 8.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=403161475 node_paths=PackedStringArray("_camera", "HandNode", "AnimSprite", "ChangeParticles", "Weapon")]
+[node name="Player" type="CharacterBody2D" unique_id=403161475 node_paths=PackedStringArray("_camera", "HandNode", "AnimSprite", "ChangeParticles", "Head", "Weapon")]
 texture_filter = 3
 motion_mode = 1
 script = ExtResource("1_dovo2")
@@ -73,29 +109,32 @@ _camera = NodePath("Camera2D")
 HandNode = NodePath("Hand")
 AnimSprite = NodePath("AnimatedSprite2D")
 ChangeParticles = NodePath("CPUParticles2D")
+Head = NodePath("MummyHead")
 Stats = SubResource("Resource_lvxji")
 Weapon = NodePath("Hand/Weapon")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=79133109]
-position = Vector2(0, 23)
-scale = Vector2(0.754, 0.754)
+position = Vector2(0, 26)
 texture = SubResource("AtlasTexture_75vfm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=322740327]
+position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_p47bc")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=92137468]
 zoom = Vector2(2, 2)
 
 [node name="Hand" type="Node2D" parent="." unique_id=28049045]
+rotation = 0.5235988
 
 [node name="Weapon" parent="Hand" unique_id=1254949922 instance=ExtResource("4_p47bc")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=119759789]
 material = SubResource("ShaderMaterial_67waw")
+position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_sdmle")
 animation = &"move"
-frame_progress = 0.4561865
+frame_progress = 0.19274275
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=2125962616]
 position = Vector2(0, 19)
@@ -116,3 +155,8 @@ initial_velocity_max = 120.0
 linear_accel_max = 20.0
 scale_amount_min = 0.3
 scale_amount_max = 0.5
+
+[node name="MummyHead" type="Sprite2D" parent="." unique_id=2125885044]
+material = SubResource("ShaderMaterial_67waw")
+position = Vector2(-1, -29)
+texture = ExtResource("19_007i1")

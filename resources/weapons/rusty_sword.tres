@@ -14,6 +14,7 @@ Bullet = ExtResource("1_8h2ad")
 AttackSpeed = 0.625
 OffsetAngle = -0.2
 OffsetSpawn = 32.0
+ZIndex = 1
 AttackAnimation = ExtResource("1_v7wcs")
 IdleAnimation = ExtResource("3_k5exx")
 metadata/_custom_type_script = "uid://cvqkhty8vm1jn"

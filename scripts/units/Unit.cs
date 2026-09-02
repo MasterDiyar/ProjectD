@@ -47,6 +47,7 @@ public partial class Unit : CharacterBody2D
             damage *= Elements.GetElement(data.Element).DamageModifier;
             damage *= WeaponTypeNums.GetModifier(UnitWeapon, data.Element);
             Hp -= damage;
+            Game.Instance.Pool.CreateTicket(GlobalPosition, BloodPool.BloodRect, data.AttackAngle);
             if (Hp <= 0) ExecuteDie();
         }else {
             Armor -= damage;
@@ -69,9 +70,9 @@ public partial class Unit : CharacterBody2D
         KritChance = Stats.BaseKritChance + soul.SoulStats.BaseKritChance;
         KritModifier = Stats.BaseKritModifier + soul.SoulStats.BaseKritModifier; 
         
-        Speed = Mathf.Min(Speed + soul.SoulStats.BaseSpeed, MaxSpeed);
+        Speed =  MaxSpeed;
         Mana = Mathf.Min(Mana + soul.SoulStats.BaseMana, MaxMana);
-        Hp = Mathf.Min(Hp + soul.SoulStats.BaseHp, MaxHp);
+        Hp = Mathf.Min(Hp, MaxHp);
         Armor = Mathf.Min(Armor + soul.SoulStats.BaseArmor, MaxArmor);
         UnitElement = soul.SoulElement;
     }

@@ -29,7 +29,7 @@ public partial class Bullet : Area2D
 		PierceCount--;
 		if (PierceCount == 0)
 			SetDeferred("monitoring", false);
-		player.TakeDamage(new HitData {Damage = Damage, Element = BulletRes.ElementType, KnockbackForce = KnockbackStrength, Type = WeaponType});
+		player.TakeDamage(new HitData {Damage = Damage, Element = BulletRes.ElementType, KnockbackForce = KnockbackStrength, Type = WeaponType, AttackAngle = GlobalRotation});
 	}
 
 	public static Bullet operator +(Bullet a, BulletResource b)

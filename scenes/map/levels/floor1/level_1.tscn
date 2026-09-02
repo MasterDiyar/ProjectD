@@ -16,6 +16,8 @@
 texture_filter = 3
 
 [node name="Floors" type="Node2D" parent="." unique_id=1818649898]
+z_index = -1
+z_as_relative = false
 scale = Vector2(2, 2)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Floors" unique_id=1697775678]
@@ -32,7 +34,7 @@ position = Vector2(-93.5, -226.5)
 scale = Vector2(0.5, 0.5)
 
 [node name="Player" parent="." unique_id=403161475 instance=ExtResource("1_7uo7r")]
-position = Vector2(-895, -463)
+position = Vector2(-1053, -540)
 
 [node name="FloorSpawner" parent="." unique_id=2000616467 node_paths=PackedStringArray("SpawnPoints", "WhereToSpawn") instance=ExtResource("2_w63ba")]
 SpawnPoints = [NodePath("../Floors/Marker2D")]

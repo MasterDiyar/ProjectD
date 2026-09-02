@@ -14,6 +14,7 @@ public struct HitData
     public ElementType Element;
     public WeaponType  Type;
     public float KnockbackForce;
+    public float AttackAngle;
 }
 
 public partial class PlayerController : Unit

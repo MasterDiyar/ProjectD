@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b5uvt1v0snj06"]
+
+[ext_resource type="Script" uid="uid://8o50ro8k2xkc" path="res://scripts/tools/BloodPool.cs" id="1_4pd1r"]
+[ext_resource type="Texture2D" uid="uid://t1arj87amuuf" path="res://assets/units/blood1_atlas.png" id="2_bwwea"]
+
+[node name="BloodPool" type="Node2D" unique_id=1055754605]
+script = ExtResource("1_4pd1r")
+BloodTexture = ExtResource("2_bwwea")

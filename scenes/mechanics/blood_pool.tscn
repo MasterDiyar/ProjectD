@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://8o50ro8k2xkc" path="res://scripts/tools/BloodPool.cs" id="1_4pd1r"]
 [ext_resource type="Texture2D" uid="uid://t1arj87amuuf" path="res://assets/units/blood1_atlas.png" id="2_bwwea"]
+[ext_resource type="Texture2D" uid="uid://ctc6d77s5rq6r" path="res://assets/units/mini_blood1_atlas.png" id="3_fimrd"]
 
 [node name="BloodPool" type="Node2D" unique_id=1055754605]
 script = ExtResource("1_4pd1r")
 BloodTexture = ExtResource("2_bwwea")
+MiniBloodTexture = ExtResource("3_fimrd")

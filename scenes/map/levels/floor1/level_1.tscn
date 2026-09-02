@@ -42,7 +42,7 @@ FloorScenes = Array[PackedScene]([ExtResource("3_dyaw2")])
 WhereToSpawn = NodePath("../Floors")
 
 [node name="FallenItem" parent="." unique_id=280327951 instance=ExtResource("4_dyaw2")]
-position = Vector2(-791.75024, -407.5647)
+position = Vector2(-962, -507)
 ItemResource = ExtResource("5_0o1j4")
 
 [node name="FallenItem2" parent="." unique_id=644317630 instance=ExtResource("4_dyaw2")]
@@ -54,7 +54,7 @@ position = Vector2(-1138, -370)
 ItemResource = ExtResource("8_wfq1s")
 
 [node name="SoulContainer" parent="." unique_id=1832285923 instance=ExtResource("9_rec3e")]
-position = Vector2(-672, -479)
+position = Vector2(-1007, -493)
 Soul = ExtResource("10_0112o")
 
 [node name="SoulContainer2" parent="." unique_id=1027829536 instance=ExtResource("9_rec3e")]

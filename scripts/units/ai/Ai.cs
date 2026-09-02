@@ -113,10 +113,11 @@ public partial class Ai : Node2D
 					_movePos = _unit.GlobalPosition + 50 * Vector2.FromAngle(GD.Randf() * Mathf.Tau);
 					break;
 			}
-			if (_player != null && _unit.Weapon?.Resource != null && UnitAction == ActionType.Attack) 
-				_unit.Weapon.ExecuteShoot((_player.GlobalPosition - _unit.GlobalPosition).Angle(), _unit);
+			
 			_actionTime = 0f;
 		}
+		if (_player != null && _unit.Weapon?.Resource != null && UnitAction == ActionType.Attack) 
+			_unit.Weapon.ExecuteShoot((_player.GlobalPosition - _unit.GlobalPosition).Angle(), _unit);
 		
 		MoveBehavior();
 		_unit.MoveAndSlide();

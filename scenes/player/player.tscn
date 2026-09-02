@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cudteqh6dn1yt" path="res://assets/player/playtest_doll4.png" id="9_ugbui"]
 [ext_resource type="Texture2D" uid="uid://diis2g5howsbn" path="res://assets/player/playtest_doll5.png" id="10_fcs02"]
 [ext_resource type="Texture2D" uid="uid://bxo8o7dy1yc25" path="res://assets/player/playtest_doll6.png" id="11_myrg7"]
+[ext_resource type="Texture2D" uid="uid://vyw01s5bsckh" path="res://assets/player/soul_particle.png" id="12_fm80t"]
 
 [sub_resource type="Resource" id="Resource_lvxji"]
 script = ExtResource("2_lvxji")
@@ -64,18 +65,20 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=403161475 node_paths=PackedStringArray("_camera", "HandNode", "AnimSprite", "Weapon")]
+[node name="Player" type="CharacterBody2D" unique_id=403161475 node_paths=PackedStringArray("_camera", "HandNode", "AnimSprite", "ChangeParticles", "Weapon")]
 texture_filter = 3
 motion_mode = 1
 script = ExtResource("1_dovo2")
 _camera = NodePath("Camera2D")
 HandNode = NodePath("Hand")
 AnimSprite = NodePath("AnimatedSprite2D")
+ChangeParticles = NodePath("CPUParticles2D")
 Stats = SubResource("Resource_lvxji")
 Weapon = NodePath("Hand/Weapon")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=79133109]
 position = Vector2(0, 23)
+scale = Vector2(0.754, 0.754)
 texture = SubResource("AtlasTexture_75vfm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=322740327]
@@ -92,4 +95,24 @@ zoom = Vector2(2, 2)
 material = SubResource("ShaderMaterial_67waw")
 sprite_frames = SubResource("SpriteFrames_sdmle")
 animation = &"move"
-frame_progress = 0.5966507
+frame_progress = 0.4561865
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=2125962616]
+position = Vector2(0, 19)
+emitting = false
+amount = 50
+texture = ExtResource("12_fm80t")
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.75
+randomness = 0.2
+emission_shape = 1
+emission_sphere_radius = 16.0
+direction = Vector2(0, -1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 75.0
+initial_velocity_max = 120.0
+linear_accel_max = 20.0
+scale_amount_min = 0.3
+scale_amount_max = 0.5

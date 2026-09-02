@@ -29,6 +29,7 @@ public partial class PlayerController : Unit
     [Export] private Camera2D _camera;
     [Export] public Node2D HandNode;
     [Export] public AnimatedSprite2D AnimSprite;
+    [Export] public CpuParticles2D ChangeParticles;
     
     private bool _inBattle = false;
     
@@ -39,7 +40,7 @@ public partial class PlayerController : Unit
     public int CurrentSoulIndex = 0;
     public int CurrentWeaponIndex = 0;
     
-    private float _shakeStrength = 0f;
+    private float _shakeStrength = 0f, _selectionCooldown = 0f;
     private readonly float _shakeDecayRate = 5f;
     private readonly Vector2 _normalZoom = new Vector2(2f, 2f);
     private readonly Vector2 _battleZoom = new Vector2(1.8f, 1.8f); 
@@ -59,6 +60,9 @@ public partial class PlayerController : Unit
 
     public override void _PhysicsProcess(double delta)
     {
+        if (_selectionCooldown > 0f)
+            _selectionCooldown -= (float)delta;
+        
         HandleMovement((float)delta);
         HandleSelectionInputs();
         if (Input.IsActionPressed("lm"))
@@ -89,11 +93,14 @@ public partial class PlayerController : Unit
 
     private void HandleSelectionInputs()
     {
-        if (Input.IsActionJustPressed("mwu")) SwitchSoul(1);
-        if (Input.IsActionJustPressed("mwd")) SwitchSoul(-1);
+        if (_selectionCooldown > 0f) return;
         
-        if (Input.IsActionJustPressed("q")) SwitchWeapon(1);
-        if (Input.IsActionJustPressed("e")) SwitchWeapon(-1);
+        if (Input.IsActionJustPressed("mwu")) SwitchSoul(1);
+        else if (Input.IsActionJustPressed("mwd")) SwitchSoul(-1);
+        else if (Input.IsActionJustPressed("q")) SwitchWeapon(1);
+        else if (Input.IsActionJustPressed("e")) SwitchWeapon(-1);
+        else return; 
+        _selectionCooldown = 1.5f;
     }
 
     void HandleAttack()
@@ -189,6 +196,9 @@ public partial class PlayerController : Unit
 
         shader.SetShaderParameter("use_gradient", true);
         shader.SetShaderParameter("gradient_texture", gradientTexture);
+        
+        ChangeParticles.ColorRamp = gradient;
+        ChangeParticles.Emitting = true;
     }
     
 

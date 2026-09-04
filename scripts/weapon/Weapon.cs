@@ -73,9 +73,11 @@ public partial class Weapon : Node2D
         _isShooted = true;
         _betweenShoot.Start();
         Animator.Play("onAttack");
+        
+        if (GlobalScale.Y < 0) GlobalScale = new Vector2(GlobalScale.X, -GlobalScale.Y);
+        //var ngl = (GlobalScale.Y < 0) ? Mathf.Pi+angle : angle;
 
         Rotation = angle;
-        TweenAnimation();
 
         await SpawnBullet(angle, unit);
 
@@ -99,27 +101,9 @@ public partial class Weapon : Node2D
             bullet += Resource.Bullet;
             bullet.GlobalScale = Vector2.One * Resource.BulletScale;
 
-            if (Type == WeaponType.Melee) unit.AddChild(bullet);
+            if (Type == WeaponType.Melee) GetParent().AddChild(bullet);
             else Game.Instance.SpawnNode(bullet);
         }
-    }
-
-    void TweenAnimation()
-    {
-        _punchTween?.Kill();
-        _punchTween = CreateTween();
-        
-        Vector2 punchTarget = _defaultPosition + new Vector2(Resource.OffsetSpawn / 2f, 0);
-        
-        _punchTween.TweenProperty(this, "position", punchTarget, 0.1f)
-            .SetTrans(Tween.TransitionType.Sine)
-            .SetEase(Tween.EaseType.Out);
-            
-        float returnTime = Mathf.Max(0.1f, Resource.AttackSpeed - 0.1f);
-        _punchTween.TweenProperty(this, "position", _defaultPosition, returnTime)
-            .SetTrans(Tween.TransitionType.Sine)
-            .SetEase(Tween.EaseType.InOut);
-        _punchTween.TweenProperty(this, "rotation", 0, 0.01f);
     }
 
     void AttackEnded(StringName name)

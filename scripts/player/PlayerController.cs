@@ -28,9 +28,11 @@ public partial class PlayerController : Unit
 
     [Export] private Camera2D _camera;
     [Export] public Node2D HandNode;
-    [Export] public AnimatedSprite2D AnimSprite;
+    [Export] public AnimatedSprite2D AnimSprite; //deprecased
+    [Export] public AnimationPlayer Animator;
     [Export] public CpuParticles2D ChangeParticles;
-    [Export] public Sprite2D Head;
+    [Export] public Sprite2D Head, Body;
+    [Export] public Marker2D LeftHand, RightHand;
     
     private bool _inBattle = false;
     
@@ -68,7 +70,6 @@ public partial class PlayerController : Unit
         HandleSelectionInputs();
         if (Input.IsActionPressed("lm"))
             HandleAttack();
-        if (!Weapon.CanShoot) Weapon.Scale = Vector2.One;
     }
 
     public override void _Process(double delta)
@@ -80,11 +81,19 @@ public partial class PlayerController : Unit
     private void HandleMovement(float dt)
     {
         Vector2 direction = Input.GetVector("a", "d", "w", "s");
-        AnimSprite.Play((direction.Length() < 0.1f) ? "idle":"move");
-        AnimSprite.FlipH = direction.X < 0;
-        Weapon.Scale = new Vector2(AnimSprite.FlipH ? -1 : 1, 1);
+        Animator.Play((direction.Length() < 0.1f) ? "RESET":"move");
+        if (direction.X < 0f) {
+            Body.Scale = new Vector2(-1, 1);
+            Head.Scale = new Vector2(-1, 1);
+        }else {
+            Body.Scale = Vector2.One;
+            Head.Scale = Vector2.One;
+        }
         Velocity = direction * Speed;
         MoveAndSlide();
+        
+        //AnimSprite.Play((direction.Length() < 0.1f) ? "idle":"move");
+        //AnimSprite.FlipH = direction.X < 0;
     }
 
     private void HandleSelectionInputs()
@@ -128,9 +137,8 @@ public partial class PlayerController : Unit
         EmitSignal(Unit.SignalName.HealthChanged, Hp, Stats?.BaseHp ?? 100f);
 
         if (Hp <= 0)
-        {
             ExecuteDie();
-        }
+        
     }
 
     public void Heal(float amount)
@@ -142,7 +150,7 @@ public partial class PlayerController : Unit
 
     public override void ExecuteDie()
     {
-        Hp = 125;
+        Heal(125);
     }
 
     public void AddWeapon(WeaponResource weapon)

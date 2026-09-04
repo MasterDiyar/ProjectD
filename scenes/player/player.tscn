@@ -101,17 +101,107 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=403161475 node_paths=PackedStringArray("_camera", "HandNode", "AnimSprite", "ChangeParticles", "Head", "Weapon")]
+[sub_resource type="Animation" id="Animation_lgqa7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MummyBody:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_lgqa7")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MummyBody/hand_left:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(19, 6), Vector2(18, 7)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MummyBody/hand_right:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-21, 10), Vector2(-21, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_8ydkj"]
+resource_name = "move"
+length = 0.625
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MummyBody:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_8ydkj"), ExtResource("9_3j4b4"), ExtResource("8_8ydkj"), ExtResource("11_ioxgp"), ExtResource("12_cnsyf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MummyBody/hand_left:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(19, 6), Vector2(21, 3), Vector2(19, 5), Vector2(17, 8), Vector2(18, 7)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MummyBody/hand_right:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-21, 9), Vector2(-21, 10), Vector2(-21, 9), Vector2(-19, 8), Vector2(-18, 8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3j4b4"]
+_data = {
+&"RESET": SubResource("Animation_lgqa7"),
+&"move": SubResource("Animation_8ydkj")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=403161475 node_paths=PackedStringArray("_camera", "HandNode", "AnimSprite", "Animator", "ChangeParticles", "Head", "Body", "LeftHand", "RightHand", "Weapon")]
 texture_filter = 3
 motion_mode = 1
 script = ExtResource("1_dovo2")
 _camera = NodePath("Camera2D")
 HandNode = NodePath("Hand")
 AnimSprite = NodePath("AnimatedSprite2D")
+Animator = NodePath("AnimationPlayer")
 ChangeParticles = NodePath("CPUParticles2D")
 Head = NodePath("MummyHead")
+Body = NodePath("MummyBody")
+LeftHand = NodePath("MummyBody/hand_left")
+RightHand = NodePath("MummyBody/hand_right")
 Stats = SubResource("Resource_lvxji")
-Weapon = NodePath("Hand/Weapon")
+Weapon = NodePath("MummyBody/hand_left/Weapon")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=79133109]
 position = Vector2(0, 26)
@@ -127,14 +217,14 @@ zoom = Vector2(2, 2)
 [node name="Hand" type="Node2D" parent="." unique_id=28049045]
 rotation = 0.5235988
 
-[node name="Weapon" parent="Hand" unique_id=1254949922 instance=ExtResource("4_p47bc")]
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=119759789]
+visible = false
 material = SubResource("ShaderMaterial_67waw")
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_sdmle")
 animation = &"move"
-frame_progress = 0.19274275
+frame = 4
+frame_progress = 0.24707071
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=2125962616]
 position = Vector2(0, 19)
@@ -156,7 +246,21 @@ linear_accel_max = 20.0
 scale_amount_min = 0.3
 scale_amount_max = 0.5
 
+[node name="MummyBody" type="Sprite2D" parent="." unique_id=712770272]
+texture = ExtResource("6_lgqa7")
+
+[node name="hand_left" type="Marker2D" parent="MummyBody" unique_id=446475300]
+position = Vector2(19, 6)
+
+[node name="Weapon" parent="MummyBody/hand_left" unique_id=1254949922 instance=ExtResource("4_p47bc")]
+
+[node name="hand_right" type="Marker2D" parent="MummyBody" unique_id=1511761731]
+position = Vector2(-21, 10)
+
 [node name="MummyHead" type="Sprite2D" parent="." unique_id=2125885044]
 material = SubResource("ShaderMaterial_67waw")
 position = Vector2(-1, -29)
 texture = ExtResource("19_007i1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=103472519]
+libraries/ = SubResource("AnimationLibrary_3j4b4")

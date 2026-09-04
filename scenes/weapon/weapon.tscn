@@ -2,7 +2,25 @@
 
 [ext_resource type="Script" uid="uid://ck2u7g42mm6u7" path="res://scripts/weapon/Weapon.cs" id="1_l3xq3"]
 
+[sub_resource type="Animation" id="Animation_l3xq3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slot0:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.7853982]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iyg5g"]
+_data = {
+&"RESET": SubResource("Animation_l3xq3")
+}
 
 [node name="Weapon" type="Node2D" unique_id=1018972646 node_paths=PackedStringArray("_betweenShoot", "Animator", "SpriteSlots")]
 texture_filter = 3
@@ -17,6 +35,7 @@ SpriteSlots = [NodePath("Slot0"), NodePath("Slot1"), NodePath("Slot2"), NodePath
 libraries/ = SubResource("AnimationLibrary_iyg5g")
 
 [node name="Slot0" type="Sprite2D" parent="." unique_id=473000198]
+rotation = 0.7853982
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Slot1" type="Sprite2D" parent="." unique_id=1735772789]

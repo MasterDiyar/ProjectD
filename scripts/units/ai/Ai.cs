@@ -100,27 +100,32 @@ public partial class Ai : Node2D
 	{
 		float dt = (float)delta;
 		_actionTime += dt;
-		if (_actionTime >= BetweenActionTime) {
-			if (UnitAction is ActionType.Idle or ActionType.Move)
-				UnitAction = UnitAction == ActionType.Idle ? ActionType.Move : ActionType.Idle;
-			switch (Behavior) {
-				case UnitBehavior.Patrol:
-					if (_patrolPoints.Length <= 0) break;
-					_patrolPointIndex = (_patrolPointIndex + 1) % _patrolPoints.Length;
-					_movePos = _patrolPoints[_patrolPointIndex];
-					 break;
-				case UnitBehavior.Animal: case UnitBehavior.Passive:
-					_movePos = _unit.GlobalPosition + 50 * Vector2.FromAngle(GD.Randf() * Mathf.Tau);
-					break;
-			}
-			
-			_actionTime = 0f;
-		}
+		if (_actionTime >= BetweenActionTime) 
+			Think();
+		
 		if (_player != null && _unit.Weapon?.Resource != null && UnitAction == ActionType.Attack) 
 			_unit.Weapon.ExecuteShoot((_player.GlobalPosition - _unit.GlobalPosition).Angle(), _unit);
 		
 		MoveBehavior();
 		_unit.MoveAndSlide();
+	}
+
+	void Think()
+	{
+		if (GD.Randf() > 0.5f && UnitAction is ActionType.Idle or ActionType.Move)
+			UnitAction = UnitAction == ActionType.Idle ? ActionType.Move : ActionType.Idle;
+		switch (Behavior) {
+			case UnitBehavior.Patrol:
+				if (_patrolPoints.Length <= 0) break;
+				_patrolPointIndex = (_patrolPointIndex + 1) % _patrolPoints.Length;
+				_movePos = _patrolPoints[_patrolPointIndex];
+				break;
+			case UnitBehavior.Animal: case UnitBehavior.Passive:
+				_movePos = _unit.GlobalPosition + 50 * Vector2.FromAngle(GD.Randf() * Mathf.Tau);
+				break;
+		}
+			
+		_actionTime = 0f;
 	}
 
 	void MoveBehavior()

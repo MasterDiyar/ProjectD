@@ -12,7 +12,6 @@ Texture = Array[Texture2D]([ExtResource("1_g2w42")])
 BulletCount = 1
 Bullet = ExtResource("1_qxsmh")
 AttackSpeed = 2.0
-OffsetAngle = 0.2
 OffsetSpawn = 32.0
 SpawnTimeOffset = 0.3
 ZIndex = 1

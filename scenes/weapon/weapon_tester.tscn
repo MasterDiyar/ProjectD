@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bvqiepltwy8wu"]
+
+[ext_resource type="PackedScene" uid="uid://clh8rfmt6leu8" path="res://scenes/weapon/weapon.tscn" id="1_x20jb"]
+[ext_resource type="Texture2D" uid="uid://bjcw7h02kyw2a" path="res://assets/player/player_mummy1.png" id="2_r2n2j"]
+[ext_resource type="Animation" uid="uid://dqstj8iw8p8xx" path="res://resources/anims/pikes/onAttack.res" id="3_uot2m"]
+[ext_resource type="Texture2D" uid="uid://cerp1mhv6rjuy" path="res://assets/weapons/small_goblin_pike.png" id="4_x20jb"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b62pr"]
+_data = {
+&"onAttack": ExtResource("3_uot2m")
+}
+
+[node name="Weapon" unique_id=1018972646 instance=ExtResource("1_x20jb")]
+
+[node name="PlayerMummy1" type="Sprite2D" parent="." index="0" unique_id=1326873752]
+position = Vector2(-18, -7)
+texture = ExtResource("2_r2n2j")
+
+[node name="AnimationPlayer" parent="." index="2" unique_id=746517516]
+libraries/s = SubResource("AnimationLibrary_b62pr")
+
+[node name="Slot0" parent="." index="3" unique_id=473000198]
+rotation = 0.7853982
+texture = ExtResource("4_x20jb")

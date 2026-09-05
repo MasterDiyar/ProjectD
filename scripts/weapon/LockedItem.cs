@@ -13,7 +13,7 @@ public partial class LockedItem : FallenItem
 	{
 		base._Ready();
 		BodyExited += OnBodyExited;
-		label.Text = $"{ItemResource.ResourceName}\nCost: {Cost}, {Type}";
+		
 	}
 
 	private void OnBodyExited(Node2D body)
@@ -33,6 +33,16 @@ public partial class LockedItem : FallenItem
 	public override void _Input(InputEvent @event)
 	{
 		if (@event.IsActionPressed("f") && CanBuy)
+		{
+			MoneyManager.Instance.SpendCoin(Type, Cost);
 			AddWeapon(player);
+		}
+	}
+
+	public override void SetItem(WeaponResource res)
+	{
+		base.SetItem(res);
+		if (label == null || IsInstanceValid(label)) label = GetNode<Label>("Label");
+		label.Text = $"{ItemResource.ResourceName}\nCost: {Cost}, {Type}";
 	}
 }

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://156j4mnpuwmk" path="res://assets/ui/base_ui.png" id="1_2sf84"]
 [ext_resource type="Script" uid="uid://x1mascd6snfg" path="res://scripts/ui/PlayerUI.cs" id="1_jg20v"]
 [ext_resource type="PackedScene" uid="uid://or2nmekw624s" path="res://scenes/ui/soul_button.tscn" id="2_jg20v"]
+[ext_resource type="FontFile" uid="uid://qrvxqxohflyi" path="res://assets/fonts/JimNightshade-Regular.ttf" id="4_fatqr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sdmle"]
 atlas = ExtResource("1_2sf84")
@@ -36,11 +37,19 @@ region = Rect2(48, 32, 32, 32)
 atlas = SubResource("CompressedTexture2D_fatqr")
 region = Rect2(80, 32, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fatqr"]
+atlas = SubResource("CompressedTexture2D_fatqr")
+region = Rect2(32, 256, 32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sdmle"]
+font = ExtResource("4_fatqr")
+font_size = 32
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jg20v"]
 atlas = ExtResource("1_2sf84")
 region = Rect2(0, 176, 224, 64)
 
-[node name="PlayerUI" type="Control" unique_id=1911058716 node_paths=PackedStringArray("SoulsContainer", "SoulButtons", "ManaBar", "ShieldBar", "HealthBar")]
+[node name="PlayerUI" type="Control" unique_id=1911058716 node_paths=PackedStringArray("SoulsContainer", "SoulButtons", "ManaBar", "ShieldBar", "HealthBar", "CoinLabel")]
 texture_filter = 3
 layout_mode = 3
 anchors_preset = 15
@@ -54,6 +63,7 @@ SoulButtons = [NodePath("MarginContainer/Control/VBoxContainer/SoulButton"), Nod
 ManaBar = NodePath("MarginContainer/Control/ManaBar")
 ShieldBar = NodePath("MarginContainer/Control/ShieldBar")
 HealthBar = NodePath("MarginContainer/NinePatchRect/MarginContainer/HSlider")
+CoinLabel = NodePath("MarginContainer/Control/coin/Label")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1527106387]
 layout_mode = 1
@@ -181,6 +191,23 @@ offset_top = 103.0
 offset_right = 39.0
 offset_bottom = 143.0
 texture = SubResource("AtlasTexture_g7v3g")
+
+[node name="coin" type="TextureRect" parent="MarginContainer/Control" unique_id=1929583717]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 151.0
+offset_right = 38.0
+offset_bottom = 191.0
+texture = SubResource("AtlasTexture_fatqr")
+
+[node name="Label" type="Label" parent="MarginContainer/Control/coin" unique_id=1805068454]
+layout_mode = 0
+offset_left = 47.0
+offset_right = 237.0
+offset_bottom = 46.0
+text = "X400"
+label_settings = SubResource("LabelSettings_sdmle")
+vertical_alignment = 1
 
 [node name="TextureRect3" type="TextureRect" parent="MarginContainer/Control" unique_id=807305909]
 visible = false

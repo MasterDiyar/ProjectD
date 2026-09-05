@@ -8,11 +8,15 @@ public partial class FallenItem : Area2D
 	[Export] private Sprite2D texture;
 	public override void _Ready()
 	{
-		if (ItemResource == null) {
-			QueueFree();
-			return;
+		if (ItemResource != null) {
+			SetItem(ItemResource);
 		}
 		BodyEntered += OnBodyEntered;
+		
+	}
+
+	protected void SetTexture()
+	{
 		texture.Texture = ItemResource.Texture[0];
 	}
 
@@ -27,5 +31,11 @@ public partial class FallenItem : Area2D
 	{
 		pcr.AddWeapon(ItemResource);
         			QueueFree();
+	}
+
+	public virtual void SetItem(WeaponResource res)
+	{
+		ItemResource = res;
+		SetTexture();
 	}
 }

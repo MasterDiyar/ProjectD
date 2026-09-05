@@ -2,15 +2,23 @@
 
 [ext_resource type="Script" uid="uid://70xhcsksu2ey" path="res://scripts/weapon/LockedItem.cs" id="1_mfcly"]
 
-[node name="LockedItem" type="Area2D" unique_id=646803103]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ljb2q"]
+radius = 41.303753
+
+[node name="LockedItem" type="Area2D" unique_id=646803103 node_paths=PackedStringArray("label", "texture")]
 script = ExtResource("1_mfcly")
+label = NodePath("Label")
+texture = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=315602128]
+shape = SubResource("CircleShape2D_ljb2q")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=667925037]
 
 [node name="Label" type="Label" parent="." unique_id=276564196]
-offset_left = -20.0
-offset_top = 78.0
-offset_right = 20.0
-offset_bottom = 101.0
+visible = false
+offset_left = -42.0
+offset_top = 2.0
+offset_right = 41.0
+offset_bottom = 83.0
+horizontal_alignment = 1

@@ -1,10 +1,332 @@
 [gd_scene format=3 uid="uid://besp2axcioivx"]
 
+[ext_resource type="Script" uid="uid://cpf23qemugfd8" path="res://scripts/units/Merchant.cs" id="1_o4t2g"]
 [ext_resource type="Texture2D" uid="uid://bi2ite2etfqcw" path="res://assets/units/merchant_atlas.png" id="1_u481o"]
 [ext_resource type="PackedScene" uid="uid://dgvdowy3hkviu" path="res://scenes/weapon/locked_item.tscn" id="2_8bedb"]
+[ext_resource type="Resource" uid="uid://ic6hwbkr8ehe" path="res://resources/weapons/goblin_pike.tres" id="2_drqon"]
+[ext_resource type="Resource" uid="uid://cqfsqgp4gmmgy" path="res://resources/weapons/iron_moons.tres" id="3_we3uy"]
+[ext_resource type="Resource" uid="uid://dlr20d8dwgof3" path="res://resources/weapons/rusty_sword.tres" id="4_x11lf"]
+[ext_resource type="Texture2D" uid="uid://vyw01s5bsckh" path="res://assets/player/soul_particle.png" id="6_c7q6o"]
+[ext_resource type="Texture2D" uid="uid://biefj5hxrv24q" path="res://assets/units/goblin_atlas.png" id="8_drqon"]
 
-[node name="Merchant" type="Node2D" unique_id=152734301]
+[sub_resource type="CircleShape2D" id="CircleShape2D_sdmle"]
+radius = 245.00816
+
+[sub_resource type="Animation" id="Animation_3e273"]
+resource_name = "GiveTiers"
+length = 5.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Merchant:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.21, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8000001, 2.2333333, 2.35, 2.3999999, 2.75, 2.8666666, 2.9333334, 3.5, 3.6, 3.6666667, 4.25, 4.3333335, 4.4, 5.0004787),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(63, 115), Vector2(55, 133), Vector2(55, 133), Vector2(7, 10), Vector2(4, 0), Vector2(-2, 19), Vector2(13, 2), Vector2(22, 21), Vector2(4, 0), Vector2(-2, 19), Vector2(13, 2), Vector2(22, 21), Vector2(-120, 77), Vector2(-120, 77), Vector2(-108, 83), Vector2(-43, 112), Vector2(-43, 112), Vector2(-44, 116), Vector2(50, 117), Vector2(50, 117), Vector2(51, 120), Vector2(134, 82), Vector2(134, 82), Vector2(134, 82), Vector2(2, 79)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tkan:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.6999999, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.08726646, 0.0, -0.10471976, 0.0, 0.08726646, 0.0, -0.10471976, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("tkan:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.6999999, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -49), Vector2(0, -49), Vector2(0, -52), Vector2(0, -49), Vector2(-1, -59.000004), Vector2(0, -49), Vector2(0, -52), Vector2(0, -49), Vector2(-1, -59.000004), Vector2(0, -49)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Merchant:region_rect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.16, 1.8, 1.801),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(202, 155, 38, 78), Rect2(202, 155, 38, 78), Rect2(242, 155, 38, 78), Rect2(242, 155, 38, 78), Rect2(202, 155, 38, 78)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Merchant:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.6999999, 1.8, 2.2333333, 2.35, 2.3999999, 2.75, 2.85, 2.9333334, 3.5, 3.6, 3.6666667, 4.233333, 4.3333335, 4.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -0.3647738, 0.0, 0.27925268, 0.0, -0.3647738, 0.0, 0.27925268, 0.0, 0.0, -0.08726646, 0.0, 0.0, -0.08726646, 0.0, 0.0, 0.08726646259971647, 0.0, 0.0, 0.12217304763960309, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CPUParticles2D:direction")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 1.2, 1.5, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.5), Vector2(-0.7, 0.5), Vector2(0.7, 0.5), Vector2(-0.7, 0.5), Vector2(0.7, 0.5)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CPUParticles2D:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 1.2333333, 1.5, 1.7333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("stule3:z_index")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 3.3333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("stule/LockedItem:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 2.348017),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("stule2/LockedItem:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 2.8248508),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("stule3/LockedItem:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 3.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("stule4/LockedItem:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 4.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_1exlv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Merchant:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(65, 113)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tkan:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("tkan:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -49)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Merchant:region_rect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(202, 155, 38, 78)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Merchant:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CPUParticles2D:direction")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.7, 0.5)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CPUParticles2D:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("stule3:z_index")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("stule/LockedItem:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("stule2/LockedItem:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("stule3/LockedItem:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("stule4/LockedItem:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j7gts"]
+_data = {
+&"GiveTiers": SubResource("Animation_3e273"),
+&"RESET": SubResource("Animation_1exlv")
+}
+
+[node name="Merchant" type="Node2D" unique_id=152734301 node_paths=PackedStringArray("LockedItems", "Eyes", "AnimationPlayer")]
 texture_filter = 3
+script = ExtResource("1_o4t2g")
+WeaponPool = Array[Object]([ExtResource("2_drqon"), ExtResource("3_we3uy"), ExtResource("4_x11lf")])
+LockedItems = [NodePath("stule/LockedItem"), NodePath("stule2/LockedItem"), NodePath("stule3/LockedItem"), NodePath("stule4/LockedItem")]
+Eyes = NodePath("Area2D")
+AnimationPlayer = NodePath("AnimationPlayer")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2060476763]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1638204601]
+position = Vector2(15, 61)
+shape = SubResource("CircleShape2D_sdmle")
 
 [node name="cart" type="Sprite2D" parent="." unique_id=651520047]
 position = Vector2(0, -32)
@@ -13,7 +335,7 @@ region_enabled = true
 region_rect = Rect2(0, 96, 192, 112)
 
 [node name="wheel" type="Sprite2D" parent="." unique_id=1946861951]
-position = Vector2(-59, 19)
+position = Vector2(-59, 13)
 texture = ExtResource("1_u481o")
 region_enabled = true
 region_rect = Rect2(192, 88, 66, 66)
@@ -24,21 +346,63 @@ texture = ExtResource("1_u481o")
 region_enabled = true
 region_rect = Rect2(192, 88, 66, 66)
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1527343214]
+position = Vector2(0.5766907, -29.670975)
+emitting = false
+amount = 20
+texture = ExtResource("6_c7q6o")
+lifetime = 0.75
+direction = Vector2(0.7, 0.5)
+spread = 12.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 120.0
+initial_velocity_max = 160.0
+angular_velocity_min = -10.0
+angular_velocity_max = 10.0
+orbit_velocity_min = -0.2
+orbit_velocity_max = 0.2
+linear_accel_min = -20.0
+scale_amount_min = 0.6
+scale_amount_max = 1.2
+color = Color(0.44, 0.44, 0.44, 0.39215687)
+
 [node name="stule" type="Sprite2D" parent="." unique_id=222163889]
+z_index = 1
 position = Vector2(-138, 109)
 texture = ExtResource("1_u481o")
 region_enabled = true
 region_rect = Rect2(192, 240, 32, 32)
 
 [node name="LockedItem" parent="stule" unique_id=646803103 instance=ExtResource("2_8bedb")]
+visible = false
+position = Vector2(0, -10)
+Cost = 40.0
+
+[node name="shadow" type="Sprite2D" parent="stule" unique_id=1746901385]
+show_behind_parent = true
+position = Vector2(-2.0000005, 9)
+texture = ExtResource("8_drqon")
+region_enabled = true
+region_rect = Rect2(64, 38, 32, 20)
 
 [node name="stule2" type="Sprite2D" parent="." unique_id=817102851]
+z_index = 1
 position = Vector2(-56, 147)
 texture = ExtResource("1_u481o")
 region_enabled = true
 region_rect = Rect2(192, 240, 32, 32)
 
 [node name="LockedItem" parent="stule2" unique_id=490226800 instance=ExtResource("2_8bedb")]
+visible = false
+position = Vector2(0, -10)
+Cost = 30.0
+
+[node name="shadow" type="Sprite2D" parent="stule2" unique_id=1004723557]
+show_behind_parent = true
+position = Vector2(-2.0000005, 9)
+texture = ExtResource("8_drqon")
+region_enabled = true
+region_rect = Rect2(64, 38, 32, 20)
 
 [node name="stule3" type="Sprite2D" parent="." unique_id=1534923711]
 position = Vector2(65, 148)
@@ -47,23 +411,55 @@ region_enabled = true
 region_rect = Rect2(192, 240, 32, 32)
 
 [node name="LockedItem" parent="stule3" unique_id=1326443817 instance=ExtResource("2_8bedb")]
+visible = false
+position = Vector2(0, -10)
+Cost = 50.0
+
+[node name="shadow" type="Sprite2D" parent="stule3" unique_id=1382668251]
+show_behind_parent = true
+position = Vector2(-2.0000005, 9)
+texture = ExtResource("8_drqon")
+region_enabled = true
+region_rect = Rect2(64, 38, 32, 20)
 
 [node name="stule4" type="Sprite2D" parent="." unique_id=1786575656]
+z_index = 1
 position = Vector2(153, 110)
 texture = ExtResource("1_u481o")
 region_enabled = true
 region_rect = Rect2(192, 240, 32, 32)
 
 [node name="LockedItem" parent="stule4" unique_id=1023383545 instance=ExtResource("2_8bedb")]
+visible = false
+position = Vector2(0, -10)
+Cost = 120.0
+
+[node name="shadow" type="Sprite2D" parent="stule4" unique_id=1115726481]
+show_behind_parent = true
+position = Vector2(-2.0000005, 9)
+texture = ExtResource("8_drqon")
+region_enabled = true
+region_rect = Rect2(64, 38, 32, 20)
 
 [node name="tkan" type="Sprite2D" parent="." unique_id=1303408871]
-position = Vector2(2, -49)
+position = Vector2(0, -49)
 texture = ExtResource("1_u481o")
 region_enabled = true
 region_rect = Rect2(0, 0, 231, 86)
 
 [node name="Merchant" type="Sprite2D" parent="." unique_id=1021270283]
-position = Vector2(51, 38)
+position = Vector2(65, 113)
 texture = ExtResource("1_u481o")
 region_enabled = true
 region_rect = Rect2(202, 155, 38, 78)
+
+[node name="shadow" type="Sprite2D" parent="Merchant" unique_id=612608088]
+show_behind_parent = true
+position = Vector2(0.2499994, 34)
+scale = Vector2(1.171875, 1)
+texture = ExtResource("8_drqon")
+region_enabled = true
+region_rect = Rect2(64, 38, 32, 20)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=468337788]
+libraries/ = SubResource("AnimationLibrary_j7gts")

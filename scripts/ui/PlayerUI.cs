@@ -18,6 +18,7 @@ public partial class PlayerUI : Control
     [Export] public ProgressBar ManaBar, ShieldBar;
     [Export] public HSlider HealthBar;
 
+    [Export] public Label CoinLabel;
 
     public void SetPlayer(PlayerController player)
     {
@@ -28,6 +29,12 @@ public partial class PlayerUI : Control
         foreach (var btn in SoulButtons)
             btn.Pressed += () =>
                 player.SetSoul(btn.Placement);
+        MoneyManager.Instance.CoinChanged += CoinChanged;
+    }
+
+    private void CoinChanged(MoneyManager.CoinType arg1, float arg2)
+    {
+        CoinLabel.Text = $"X{arg2:F0}";
     }
 
     private void HealthChanged(float currentHp, float maxHp)

@@ -4,7 +4,7 @@ using ProjectD.scripts.player;
 
 public partial class FallenItem : Area2D
 {
-	[Export] WeaponResource ItemResource;
+	[Export] public WeaponResource ItemResource;
 	[Export] private Sprite2D texture;
 	public override void _Ready()
 	{
@@ -16,12 +16,16 @@ public partial class FallenItem : Area2D
 		texture.Texture = ItemResource.Texture[0];
 	}
 
-	private void OnBodyEntered(Node2D body)
+	protected virtual void OnBodyEntered(Node2D body)
 	{
 		if (body is PlayerController pcr)
-		{
-			pcr.AddWeapon(ItemResource);
-			QueueFree();
-		}
+			AddWeapon(pcr);
+		
+	}
+
+	protected void AddWeapon(PlayerController pcr)
+	{
+		pcr.AddWeapon(ItemResource);
+        			QueueFree();
 	}
 }

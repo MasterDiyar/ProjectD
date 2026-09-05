@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dgvdowy3hkviu"]
+
+[ext_resource type="Script" uid="uid://70xhcsksu2ey" path="res://scripts/weapon/LockedItem.cs" id="1_mfcly"]
+
+[node name="LockedItem" type="Area2D" unique_id=646803103]
+script = ExtResource("1_mfcly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=315602128]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=667925037]
+
+[node name="Label" type="Label" parent="." unique_id=276564196]
+offset_left = -20.0
+offset_top = 78.0
+offset_right = 20.0
+offset_bottom = 101.0

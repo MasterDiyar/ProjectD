@@ -10,6 +10,9 @@ public partial class Game : Node2D
 	[Export] public Label PausedLabel;
 	[Export] public BloodPool Pool;
 	bool isPaused = false;
+
+	
+	
 	public override void _Ready()
 	{
 		Instance ??= this;

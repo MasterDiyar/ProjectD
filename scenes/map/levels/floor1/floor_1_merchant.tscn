@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://besp2axcioivx"]
+
+[ext_resource type="Texture2D" uid="uid://bi2ite2etfqcw" path="res://assets/units/merchant_atlas.png" id="1_u481o"]
+[ext_resource type="PackedScene" uid="uid://dgvdowy3hkviu" path="res://scenes/weapon/locked_item.tscn" id="2_8bedb"]
+
+[node name="Merchant" type="Node2D" unique_id=152734301]
+texture_filter = 3
+
+[node name="cart" type="Sprite2D" parent="." unique_id=651520047]
+position = Vector2(0, -32)
+texture = ExtResource("1_u481o")
+region_enabled = true
+region_rect = Rect2(0, 96, 192, 112)
+
+[node name="wheel" type="Sprite2D" parent="." unique_id=1946861951]
+position = Vector2(-59, 19)
+texture = ExtResource("1_u481o")
+region_enabled = true
+region_rect = Rect2(192, 88, 66, 66)
+
+[node name="wheel2" type="Sprite2D" parent="." unique_id=1252050524]
+position = Vector2(71, 13)
+texture = ExtResource("1_u481o")
+region_enabled = true
+region_rect = Rect2(192, 88, 66, 66)
+
+[node name="stule" type="Sprite2D" parent="." unique_id=222163889]
+position = Vector2(-138, 109)
+texture = ExtResource("1_u481o")
+region_enabled = true
+region_rect = Rect2(192, 240, 32, 32)
+
+[node name="LockedItem" parent="stule" unique_id=646803103 instance=ExtResource("2_8bedb")]
+
+[node name="stule2" type="Sprite2D" parent="." unique_id=817102851]
+position = Vector2(-56, 147)
+texture = ExtResource("1_u481o")
+region_enabled = true
+region_rect = Rect2(192, 240, 32, 32)
+
+[node name="LockedItem" parent="stule2" unique_id=490226800 instance=ExtResource("2_8bedb")]
+
+[node name="stule3" type="Sprite2D" parent="." unique_id=1534923711]
+position = Vector2(65, 148)
+texture = ExtResource("1_u481o")
+region_enabled = true
+region_rect = Rect2(192, 240, 32, 32)
+
+[node name="LockedItem" parent="stule3" unique_id=1326443817 instance=ExtResource("2_8bedb")]
+
+[node name="stule4" type="Sprite2D" parent="." unique_id=1786575656]
+position = Vector2(153, 110)
+texture = ExtResource("1_u481o")
+region_enabled = true
+region_rect = Rect2(192, 240, 32, 32)
+
+[node name="LockedItem" parent="stule4" unique_id=1023383545 instance=ExtResource("2_8bedb")]
+
+[node name="tkan" type="Sprite2D" parent="." unique_id=1303408871]
+position = Vector2(2, -49)
+texture = ExtResource("1_u481o")
+region_enabled = true
+region_rect = Rect2(0, 0, 231, 86)
+
+[node name="Merchant" type="Sprite2D" parent="." unique_id=1021270283]
+position = Vector2(51, 38)
+texture = ExtResource("1_u481o")
+region_enabled = true
+region_rect = Rect2(202, 155, 38, 78)

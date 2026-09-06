@@ -10,10 +10,11 @@ public partial class Merchant : Node2D
 	//prototype ver2
 	//will be more accurate and will haev accesoriries and code
 
-	[Export] public WeaponResource[] WeaponPool;
+	[Export] public RandomItemResource WeaponPool;
 	[Export] public LockedItem[] LockedItems;
 	[Export] public Area2D Eyes;
 	[Export] public AnimationPlayer AnimationPlayer;
+	[Export] public int Level;
 	private float _timeBetweenActions = 0;
 	bool _Started = false, _been = false;
 	int _currentIndex = 0;
@@ -37,7 +38,7 @@ public partial class Merchant : Node2D
 	{
 		if (!_Started) return;
 		
-		if (LockedItems == null || LockedItems.Length == 0 || WeaponPool == null || WeaponPool.Length == 0) {
+		if (LockedItems == null || LockedItems.Length == 0 || WeaponPool == null) {
 			_Started = false;
 			return;
 		}
@@ -46,8 +47,8 @@ public partial class Merchant : Node2D
 		if (_timeBetweenActions < 0.75f) return;
 
 		if (_currentIndex < LockedItems.Length && _currentIndex < 4) {
-			int randomWeaponIdx = (int)(GD.Randi() % (uint)WeaponPool.Length);
-			LockedItems[_currentIndex].SetItem(WeaponPool[randomWeaponIdx]);
+			
+			LockedItems[_currentIndex].SetItem(WeaponPool.GetWeapon(GD.Randf(), Level));
 			_currentIndex++;
 			_timeBetweenActions = 0;
 		}

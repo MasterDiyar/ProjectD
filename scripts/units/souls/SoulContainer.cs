@@ -1,38 +1,23 @@
 using Godot;
 using System;
+using ProjectD.scripts.items;
 using ProjectD.scripts.player;
 
-public partial class SoulContainer : Area2D
+public partial class SoulContainer : PickupItem
 {
 	[Export] public Soul Soul;
 	[Export] public Sprite2D SoulSprite, UnitSprite;
 	[Export] CpuParticles2D Particles;
-	bool CanObtain = false;
-	PlayerController Player;
+
 	public override void _Ready()
 	{
-		BodyEntered += OnBodyEntered;
-		BodyExited += OnBodyExited;
+		base._Ready();
 		SoulSprite.Texture = Soul.SoulTexture;
 		UnitSprite.Texture = Soul.UnitTexture;
 	}
 
-	private void OnBodyEntered(Node2D body)
+	protected override void Pickup()
 	{
-		if (body is not PlayerController pl) return;
-		CanObtain = true;
-		Player = pl;
-	}
-
-	private void OnBodyExited(Node body)
-	{
-		if (body is not PlayerController pl) return;
-		CanObtain = false;
-	}
-
-	public override void _Input(InputEvent evt)
-	{
-		if (!evt.IsActionPressed("f") || !CanObtain) return;
 		Player.AddSoul(Soul);
 		QueueFree();
 	}

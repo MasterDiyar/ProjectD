@@ -20,5 +20,4 @@ texture = ExtResource("2_r2n2j")
 libraries/s = SubResource("AnimationLibrary_b62pr")
 
 [node name="Slot0" parent="." index="3" unique_id=473000198]
-rotation = 0.7853982
 texture = ExtResource("4_x20jb")

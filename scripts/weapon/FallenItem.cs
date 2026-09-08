@@ -1,36 +1,24 @@
 using Godot;
 using System;
+using ProjectD.scripts.items;
 using ProjectD.scripts.player;
 
-public partial class FallenItem : Area2D
+public partial class FallenItem : PickupItem
 {
 	[Export] public WeaponResource ItemResource;
 	[Export] private Sprite2D texture;
 	public override void _Ready()
 	{
-		if (ItemResource != null) {
+		base._Ready();
+		if (ItemResource != null)
 			SetItem(ItemResource);
-		}
-		BodyEntered += OnBodyEntered;
-		
 	}
+	protected void SetTexture() => texture.Texture = ItemResource.Texture[0];
 
-	protected void SetTexture()
+	protected override void Pickup()
 	{
-		texture.Texture = ItemResource.Texture[0];
-	}
-
-	protected virtual void OnBodyEntered(Node2D body)
-	{
-		if (body is PlayerController pcr)
-			AddWeapon(pcr);
-		
-	}
-
-	protected void AddWeapon(PlayerController pcr)
-	{
-		pcr.AddWeapon(ItemResource);
-        			QueueFree();
+		Player.AddWeapon(ItemResource);
+		QueueFree();
 	}
 
 	public virtual void SetItem(WeaponResource res)

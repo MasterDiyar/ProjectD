@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RandomItemResource" format=3 uid="uid://dsngvbf8gd04m"]
+
+[ext_resource type="Script" uid="uid://bhbxx12nknkhp" path="res://scripts/weapon/RandomItemResource.cs" id="1_iyrmo"]
+[ext_resource type="Resource" uid="uid://ic6hwbkr8ehe" path="res://resources/weapons/goblin_pike.tres" id="1_wou1d"]
+[ext_resource type="Resource" uid="uid://cqfsqgp4gmmgy" path="res://resources/weapons/iron_moons.tres" id="2_x7j7i"]
+[ext_resource type="Resource" uid="uid://dlr20d8dwgof3" path="res://resources/weapons/rusty_sword.tres" id="3_2k7ye"]
+
+[resource]
+script = ExtResource("1_iyrmo")
+CommonWeapons = Array[Object]([ExtResource("1_wou1d"), ExtResource("2_x7j7i"), ExtResource("3_2k7ye")])
+RareWeapons = Array[Object]([ExtResource("1_wou1d")])
+EpicWeapons = Array[Object]([ExtResource("1_wou1d")])
+LegendaryWeapons = Array[Object]([ExtResource("1_wou1d")])
+metadata/_custom_type_script = "uid://bhbxx12nknkhp"

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://5ymwjjx1g1qw"]
 
 [ext_resource type="Script" uid="uid://cqgm6dayaca0k" path="res://scripts/units/souls/SoulContainer.cs" id="1_vvivk"]
+[ext_resource type="Texture2D" uid="uid://vyw01s5bsckh" path="res://assets/player/soul_particle.png" id="2_qqjd0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dsmmi"]
 
@@ -23,6 +24,8 @@ scale = Vector2(0.6, 0.6)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=335727201]
 amount = 36
+texture = ExtResource("2_qqjd0")
+lifetime = 4.0
 explosiveness = 0.1
 emission_shape = 1
 emission_sphere_radius = 5.0
@@ -36,3 +39,5 @@ angular_velocity_max = 135.0
 orbit_velocity_min = 1.0
 orbit_velocity_max = 2.0
 linear_accel_min = -30.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2

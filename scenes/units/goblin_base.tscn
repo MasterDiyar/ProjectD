@@ -111,9 +111,9 @@ region = Rect2(64, 0, 1, 1)
 
 [sub_resource type="Resource" id="Resource_jf6dj"]
 script = ExtResource("4_16fpb")
-Textures = Array[Texture2D]([SubResource("AtlasTexture_vc4mh"), SubResource("AtlasTexture_2fllt"), SubResource("AtlasTexture_j606f")])
-Stats = Array[int]([3, 0, 7])
-Add = PackedFloat32Array(16, 60, 0)
+Textures = Array[Texture2D]([SubResource("AtlasTexture_vc4mh"), SubResource("AtlasTexture_2fllt"), SubResource("AtlasTexture_j606f"), SubResource("AtlasTexture_j606f"), SubResource("AtlasTexture_j606f")])
+Stats = Array[int]([3, 0, 7, 7, 7])
+Add = PackedFloat32Array(16, 60, 0, 0, 0)
 metadata/_custom_type_script = "uid://cwtwg5bguyt68"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gnv7o"]
@@ -136,13 +136,13 @@ region = Rect2(64, 0, 1, 1)
 
 [sub_resource type="Resource" id="Resource_oai3e"]
 script = ExtResource("4_16fpb")
-Textures = Array[Texture2D]([SubResource("AtlasTexture_qbgcv"), SubResource("AtlasTexture_r3vvy"), SubResource("AtlasTexture_vsykk")])
-Stats = Array[int]([1, 1, 7])
-Add = PackedFloat32Array(60, 90, 0)
+Textures = Array[Texture2D]([SubResource("AtlasTexture_qbgcv"), SubResource("AtlasTexture_r3vvy"), SubResource("AtlasTexture_vsykk"), SubResource("AtlasTexture_j606f"), SubResource("AtlasTexture_j606f")])
+Stats = Array[int]([1, 1, 7, 0, 0])
+Add = PackedFloat32Array(60, 90, 0, 0, 0)
 metadata/_custom_type_script = "uid://cwtwg5bguyt68"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sdmle"]
-radius = 129.00388
+radius = 138.0145
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_grgi1"]
 radius = 11.0
@@ -164,6 +164,67 @@ region = Rect2(64, 0, 32, 16)
 atlas = ExtResource("3_nx1nd")
 region = Rect2(96, 80, 32, 40)
 
+[sub_resource type="Animation" id="Animation_a4ns2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("noga:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-5, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("noga2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_ftwb7"]
+resource_name = "move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("noga:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-5, 16), Vector2(-5, 15), Vector2(-5, 16), Vector2(-4, 17)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("noga2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 16), Vector2(5, 17), Vector2(5, 16), Vector2(6, 15)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b3gdi"]
+_data = {
+&"RESET": SubResource("Animation_a4ns2"),
+&"move": SubResource("Animation_ftwb7")
+}
+
 [node name="Goblin" unique_id=41925537 node_paths=PackedStringArray("Weapon") instance=ExtResource("1_v4br4")]
 Stats = SubResource("Resource_di43x")
 Weapon = NodePath("Weapon")
@@ -176,6 +237,7 @@ Unit = NodePath("..")
 [node name="Area2D" type="Area2D" parent="." index="1" unique_id=500566714]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" unique_id=1682306750]
+visible = false
 shape = SubResource("CircleShape2D_sdmle")
 
 [node name="CollisionShape2D" parent="." index="2" unique_id=1635388551]
@@ -222,3 +284,6 @@ Resource = ExtResource("7_a4ns2")
 [node name="AI" parent="." index="11" unique_id=831052018 node_paths=PackedStringArray("_unit", "Eyes") instance=ExtResource("7_m5p41")]
 _unit = NodePath("..")
 Eyes = NodePath("../Area2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12" unique_id=839465748]
+libraries/ = SubResource("AnimationLibrary_b3gdi")

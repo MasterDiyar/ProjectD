@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BulletResource" format=3 uid="uid://cu3nhxf07odj1"]
+
+[ext_resource type="Texture2D" uid="uid://dj615wxt7crvg" path="res://assets/bullets/explosive/pixels.png" id="1_bl0ha"]
+[ext_resource type="Script" uid="uid://2n1ds6egi5q2" path="res://scripts/bullets/BulletResource.cs" id="1_k131e"]
+
+[resource]
+script = ExtResource("1_k131e")
+Texture = Array[Texture2D]([ExtResource("1_bl0ha")])
+metadata/_custom_type_script = "uid://2n1ds6egi5q2"

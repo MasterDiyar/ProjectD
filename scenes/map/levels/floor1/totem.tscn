@@ -37,7 +37,6 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_sdmle")
 
 [node name="Sprite2D5" type="Sprite2D" parent="." unique_id=1984111829]
-show_behind_parent = true
 position = Vector2(-6, 3)
 texture = SubResource("AtlasTexture_qne41")
 

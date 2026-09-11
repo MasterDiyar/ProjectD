@@ -75,7 +75,6 @@ public partial class Weapon : Node2D
         Animator.Play("onAttack");
         
         if (GlobalScale.Y < 0) GlobalScale = new Vector2(GlobalScale.X, -GlobalScale.Y);
-        //var ngl = (GlobalScale.Y < 0) ? Mathf.Pi+angle : angle;
 
         Rotation = angle;
 

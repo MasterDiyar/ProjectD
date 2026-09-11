@@ -57,6 +57,7 @@ public partial class PlayerController : Unit
 
         CallDeferred(MethodName.UISetup);
 
+        PlayerStatSaver.Instance.Player = this;
     }
     
     void UISetup() => Game.Instance.UI.PlayerUI.SetPlayer(this);

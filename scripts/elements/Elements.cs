@@ -12,7 +12,7 @@ public static class Elements
         Air = new(1.2f, Colors.Bisque,  new Color(0.8f, 0.8f, 0.8f),  new Color(0.9f, 0.9f, 0.9f)),
         Darkness = new(1.2f, Colors.MidnightBlue, new Color(), new Color()),
         Holy = new(1.2f, Colors.Coral,  new Color(), new Color()),
-        Nature = new(1.2f, Colors.DarkOliveGreen,  new Color(), new Color()),
+        Nature = new(1.2f, Colors.DarkOliveGreen,  new Color(.8f,1,.8f), new Color(.2f,1,.2f)),
         Ancient = new(1.5f, Colors.SlateBlue,  new Color(), new Color()),
         Explosive, 
         Steam = new(1.2f, Colors.DimGray,  new Color(), new Color()), 

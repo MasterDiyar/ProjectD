@@ -46,7 +46,6 @@ public partial class PlayerUI : Control
 
     public void AddSoul(Soul soul, int where)
     {
-        GD.Print(where, SoulButtons.Length);
         if (SoulButtons.Length <= where) return;
         SoulButtons[where].SetSoul(soul);
     }

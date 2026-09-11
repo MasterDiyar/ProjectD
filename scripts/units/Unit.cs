@@ -4,7 +4,7 @@ using ProjectD.scripts.weapon;
 
 namespace ProjectD.scripts.units;
 
-public partial class Unit : CharacterBody2D
+public partial class Unit : CharacterBody2D, IHasUnit
 {
     [Signal] public delegate void HealthChangedEventHandler(float currentHp, float maxHp);
     [Signal] public delegate void DamageTakenEventHandler(float amount, int elementType);
@@ -19,6 +19,8 @@ public partial class Unit : CharacterBody2D
     public float Mana, MaxMana;
     public float KritChance;
     public float KritModifier;
+    
+    public Unit unit { get => this; set{ if (value==null) return;}}
     
     public ElementType UnitElement, HittedElement;
     public WeaponType UnitWeapon;
@@ -76,4 +78,5 @@ public partial class Unit : CharacterBody2D
         Armor = Mathf.Min(Armor + soul.SoulStats.BaseArmor, MaxArmor);
         UnitElement = soul.SoulElement;
     }
+    
 }

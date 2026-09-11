@@ -4,7 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://bo042p4g7ch1s" path="res://assets/bullets/explosive/smash.png" id="2_2v4x8"]
 [ext_resource type="Script" uid="uid://2n1ds6egi5q2" path="res://scripts/bullets/BulletResource.cs" id="3_ndqvf"]
 [ext_resource type="Script" uid="uid://w3bfwl42yl" path="res://scripts/weapon/AutoAttackWeapon.cs" id="4_2v4x8"]
+[ext_resource type="Resource" uid="uid://cu3nhxf07odj1" path="res://resources/bullets/ranged/earth_crystal.tres" id="5_l4gih"]
 [ext_resource type="Script" uid="uid://cvqkhty8vm1jn" path="res://scripts/weapon/WeaponResource.cs" id="5_ndqvf"]
+[ext_resource type="AudioStream" uid="uid://beaiivae4qw0d" path="res://assets/sounds/explods/zvuk-vzryva.mp3" id="7_scga5"]
+[ext_resource type="Shader" uid="uid://fm5bq1wg80xr" path="res://shaders/bullets/explodi.gdshader" id="8_57che"]
+[ext_resource type="Texture2D" uid="uid://vyw01s5bsckh" path="res://assets/player/soul_particle.png" id="9_skxii"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_grgi1"]
 atlas = ExtResource("2_2v4x8")
@@ -24,25 +28,72 @@ load_path = "res://.godot/imported/smash.png-68ecc575e03628ae9b2f6d1299f7f69f.ct
 atlas = SubResource("CompressedTexture2D_ruw5m")
 region = Rect2(256, 0, 128, 128)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_scga5"]
+load_path = "res://.godot/imported/smash.png-68ecc575e03628ae9b2f6d1299f7f69f.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruw5m"]
+atlas = SubResource("CompressedTexture2D_scga5")
+region = Rect2(384, 0, 128, 128)
+
 [sub_resource type="Resource" id="Resource_sdmle"]
 script = ExtResource("3_ndqvf")
-Texture = Array[Texture2D]([SubResource("AtlasTexture_grgi1"), SubResource("AtlasTexture_scga5"), SubResource("AtlasTexture_57che")])
-AnimationSpeed = 10.0
+Texture = Array[Texture2D]([SubResource("AtlasTexture_grgi1"), SubResource("AtlasTexture_scga5"), SubResource("AtlasTexture_57che"), SubResource("AtlasTexture_ruw5m")])
+AnimationSpeed = 4.0
 Damage = 40.0
-Lifetime = 0.6
+Lifetime = 1.0
 PierceCount = 500.0
 ElementType = 6
-CollisionRadius = 100.0
+CollisionRadius = 50.0
 metadata/_custom_type_script = "uid://2n1ds6egi5q2"
 
-[sub_resource type="Resource" id="Resource_ndqvf"]
+[sub_resource type="Resource" id="Resource_scga5"]
 script = ExtResource("5_ndqvf")
 Texture = null
+Type = 1
+BulletCount = 10
+Bullet = ExtResource("5_l4gih")
+AttackSpeed = 0.6
+BetweenAngle = 0.628
+OffsetSpawn = 30.0
+SpawnTimeOffset = -6.0
 metadata/_custom_type_script = "uid://cvqkhty8vm1jn"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_grgi1"]
+shader = ExtResource("8_57che")
+shader_parameter/min_threshold = 0.0
+shader_parameter/max_threshold = 1.0
+
+[sub_resource type="Gradient" id="Gradient_sdmle"]
+colors = PackedColorArray(0.5372549, 0.4627451, 0.3254902, 1, 0.46666667, 0.5254902, 0.35686275, 1)
 
 [node name="Bullet" unique_id=582828526 instance=ExtResource("1_usgth")]
 BulletRes = SubResource("Resource_sdmle")
 
+[node name="Sprite2D" parent="." index="1" unique_id=1904308032]
+texture = SubResource("AtlasTexture_grgi1")
+
 [node name="AutoAttackWeapon" type="Node2D" parent="." index="2" unique_id=639718436]
 script = ExtResource("4_2v4x8")
-Resource = SubResource("Resource_ndqvf")
+Resource = SubResource("Resource_scga5")
+Type = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="3" unique_id=618174943]
+stream = ExtResource("7_scga5")
+volume_db = -16.524
+autoplay = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="4" unique_id=1859901411]
+material = SubResource("ShaderMaterial_grgi1")
+position = Vector2(0, -21)
+amount = 32
+texture = ExtResource("9_skxii")
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 21.28
+spread = 180.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 30.0
+initial_velocity_max = 120.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+color_initial_ramp = SubResource("Gradient_sdmle")

@@ -14,4 +14,5 @@ public partial class BulletResource : Resource
     [Export] public ElementType ElementType;
     [Export] public float CollisionRadius;
     
+
 }

@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dfmv6ac58rtaj"]
+
+[ext_resource type="Script" uid="uid://b30my1vd6mkta" path="res://scripts/units/TargetDummy.cs" id="1_pvng0"]
+[ext_resource type="Script" uid="uid://b77qf1gmk5wxb" path="res://scripts/units/UnitStats.cs" id="2_7r3y6"]
+[ext_resource type="Texture2D" uid="uid://igxowd02vyf5" path="res://assets/player/playtest_doll.png" id="2_580m5"]
+
+[sub_resource type="Resource" id="Resource_7r3y6"]
+script = ExtResource("2_7r3y6")
+BaseHp = 999999999.0
+BaseArmor = 0.0
+BaseDamage = 0.0
+BaseSpeed = 0.0
+BaseMana = 0.0
+BaseKritChance = 0.0
+BaseKritModifier = 0.0
+metadata/_custom_type_script = "uid://b77qf1gmk5wxb"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sdmle"]
+height = 48.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_sdmle"]
+font_size = 24
+
+[node name="GoyBoy" type="CharacterBody2D" unique_id=619563988 node_paths=PackedStringArray("DamageIndicator")]
+texture_filter = 3
+script = ExtResource("1_pvng0")
+DamageIndicator = NodePath("Label")
+Stats = SubResource("Resource_7r3y6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=425180118]
+shape = SubResource("CapsuleShape2D_sdmle")
+
+[node name="PlaytestDoll" type="Sprite2D" parent="." unique_id=780261001]
+position = Vector2(1, -2)
+texture = ExtResource("2_580m5")
+
+[node name="Label" type="Label" parent="." unique_id=1751113940]
+offset_top = -33.0
+offset_right = 40.0
+offset_bottom = 1.0
+text = "10"
+label_settings = SubResource("LabelSettings_sdmle")

@@ -89,7 +89,13 @@ public partial class Weapon : Node2D
             if (!IsInstanceValid(this) || !IsInstanceValid(unit) || !IsInstanceValid(unit.GetParent())) 
                 return;
         }
-        
+
+        float totalDamage=0;
+        if (unit is PlayerController player)
+            foreach (var souls in player._souls)
+                totalDamage = souls.ModifyDamage(totalDamage);
+        var newRes = (BulletResource)Resource.Bullet.Duplicate();
+        newRes.Damage +=  totalDamage;
         for (int i = 0; i < Resource.BulletCount; i++)
         {
             Bullet bullet = _bulletScene.Instantiate<Bullet>();

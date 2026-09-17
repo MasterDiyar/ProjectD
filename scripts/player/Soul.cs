@@ -17,6 +17,19 @@ public partial class Soul : Resource
         return unit.Damage;
     }
     
-    //Poka ne pridumal kak modifiiit i ostavlu pustim void void void 
+    public virtual float ModifyDamage(float damage)
+    {
+        return SoulStats.BaseDamage + damage;
+    }
+
+    public virtual void DirectImpactFunc(Unit unit)
+    {
+        
+    }
+
+    public virtual void DirectionalImpactFunc(Unit unit)
+    {
+        
+    }
 }
 

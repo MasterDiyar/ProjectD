@@ -37,8 +37,8 @@ public partial class PlayerController : Unit
     private bool _inBattle = false;
     
     // Используем List вместо массивов, так как мы будем добавлять предметы по ходу игры
-    private List<Soul> _souls = new(); // Пока string как плейсхолдер для класса Soul
-    private List<WeaponResource> _weapons = new(); // Плейсхолдер для класса Weapon
+    public List<Soul> _souls = new(); // Пока string как плейсхолдер для класса Soul
+    public List<WeaponResource> _weapons = new(); // Плейсхолдер для класса Weapon
 
     public int CurrentSoulIndex = 0;
     public int CurrentWeaponIndex = 0;

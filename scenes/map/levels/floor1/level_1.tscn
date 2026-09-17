@@ -15,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://bnt553lxhjbnj" path="res://resources/souls/second_testosr.tres" id="11_0112o"]
 [ext_resource type="Resource" uid="uid://drao5eg4bnqqr" path="res://resources/souls/beginner_fire_goblin_soul.tres" id="12_67waw"]
 [ext_resource type="PackedScene" uid="uid://dg2a5honpx1bu" path="res://scenes/units/bosses/pappa_goblin.tscn" id="15_h5vis"]
+[ext_resource type="PackedScene" uid="uid://dfmv6ac58rtaj" path="res://scenes/units/goy_boy.tscn" id="16_fv84a"]
 
 [node name="Level1" type="Node2D" unique_id=489502560]
 texture_filter = 3
@@ -83,3 +84,6 @@ Soul = ExtResource("12_67waw")
 
 [node name="PappaGoblin" parent="." unique_id=41925537 instance=ExtResource("15_h5vis")]
 position = Vector2(411.64496, 1352.9592)
+
+[node name="GoyBoy" parent="." unique_id=619563988 instance=ExtResource("16_fv84a")]
+position = Vector2(-692, -495)

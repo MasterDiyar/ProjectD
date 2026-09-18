@@ -10,7 +10,14 @@ public partial class Soul : Resource
     [Export] public string      SoulName,
                                 SoulDescription;
 
+    /// <summary>
+    /// <para>DirectImpact is direct stat adder for positional souls.
+    /// DirectionalImpacts works to souls that higher or lower than current pointer
+    /// </para>
+    /// </summary>
     [Export] public int[] DirectImpact, DirectionalImpact;
+
+    public int Position=-1;
 
     public virtual float ModifyDamage(Unit unit)
     {
@@ -28,6 +35,11 @@ public partial class Soul : Resource
     }
 
     public virtual void DirectionalImpactFunc(Unit unit)
+    {
+        
+    }
+
+    public virtual void SoulEquipped(Unit unit, int position)
     {
         
     }

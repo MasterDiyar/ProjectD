@@ -10,4 +10,18 @@ public partial class UnitStats : Resource
     [Export] public float BaseMana = 50f;
     [Export] public float BaseKritChance = 0.1f;
     [Export] public float BaseKritModifier = 1.5f;
+
+    public static UnitStats operator +(UnitStats a, UnitStats b)
+    {
+        UnitStats c = (UnitStats)a.Duplicate();
+        c.BaseHp += b.BaseHp;
+        c.BaseArmor += b.BaseArmor;
+        c.BaseDamage += b.BaseDamage;
+        c.BaseSpeed += b.BaseSpeed;
+        c.BaseMana += b.BaseMana;
+        c.BaseKritChance += b.BaseKritChance;
+        c.BaseKritModifier += b.BaseKritModifier;
+
+        return c;
+    }
 }

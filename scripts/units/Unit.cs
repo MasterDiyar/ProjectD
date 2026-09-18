@@ -12,6 +12,7 @@ public partial class Unit : CharacterBody2D, IHasUnit
     [Signal] public delegate void StatsLoadedEventHandler();
     [Export]public UnitStats Stats;
     [Export] public Weapon Weapon;
+    public Soul CurrentSoul;
     public float Hp, MaxHp;
     public float Armor, MaxArmor;
     public float Damage;
@@ -77,6 +78,17 @@ public partial class Unit : CharacterBody2D, IHasUnit
         Hp = Mathf.Min(Hp, MaxHp);
         Armor = Mathf.Min(Armor + soul.SoulStats.BaseArmor, MaxArmor);
         UnitElement = soul.SoulElement;
+        CurrentSoul = soul;
     }
-    
+
+    public void MultiSoulAdder(Soul[] soul)
+    {
+        UnitStats stats = new UnitStats();
+        foreach (var s in soul)
+        {
+            stats += (UnitStats)s.SoulStats.Duplicate();
+        }
+        
+        CurrentSoul.SoulStats = stats;
+    }
 }

@@ -99,11 +99,11 @@ public partial class Weapon : Node2D
         for (int i = 0; i < Resource.BulletCount; i++)
         {
             Bullet bullet = _bulletScene.Instantiate<Bullet>();
+            bullet += newRes;
             bullet.Rotation = Resource.OffsetAngle + angle + i * Resource.BetweenAngle;
             bullet.GlobalPosition = (Type == WeaponType.Melee? Vector2.Zero: unit.GlobalPosition) + Vector2.FromAngle(bullet.Rotation) * Resource.OffsetSpawn;
             bullet.unit = unit;
             bullet.WeaponType = Type;
-            bullet += Resource.Bullet;
             bullet.GlobalScale = Vector2.One * Resource.BulletScale;
 
             if (Type == WeaponType.Melee) GetParent().AddChild(bullet);

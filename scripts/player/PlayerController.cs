@@ -25,6 +25,7 @@ public partial class PlayerController : Unit
     [Signal] public delegate void ItemAddedEventHandler(string itemName);
     [Signal] public delegate void SoulAddedEventHandler(Soul soul, int index);
     [Signal] public delegate void WeaponAddedEventHandler(WeaponResource weaponResource, int index);
+    [Signal] public delegate void AttackEventHandler(float angle, PlayerController player);
 
     [Export] private Camera2D _camera;
     [Export] public Node2D HandNode;
@@ -36,12 +37,7 @@ public partial class PlayerController : Unit
     
     private bool _inBattle = false;
     
-    // Используем List вместо массивов, так как мы будем добавлять предметы по ходу игры
-    public List<Soul> _souls = new(); // Пока string как плейсхолдер для класса Soul
-    public List<WeaponResource> _weapons = new(); // Плейсхолдер для класса Weapon
-
-    public int CurrentSoulIndex = 0;
-    public int CurrentWeaponIndex = 0;
+    
     
     private float _shakeStrength = 0f, _selectionCooldown = 0f;
     private readonly float _shakeDecayRate = 5f;
@@ -53,7 +49,6 @@ public partial class PlayerController : Unit
     {
         base._Ready();
         _rng.Randomize();
-        Hp = Stats?.BaseHp ?? 100f;
 
         CallDeferred(MethodName.UISetup);
 
@@ -135,7 +130,7 @@ public partial class PlayerController : Unit
         ApplyCameraShake(damage * 0.5f);
 
         EmitSignal(Unit.SignalName.DamageTaken, damage, (int)data.Element);
-        EmitSignal(Unit.SignalName.HealthChanged, Hp, Stats?.BaseHp ?? 100f);
+        EmitSignal(Unit.SignalName.HealthChanged, Hp, MaxHp);
 
         if (Hp <= 0)
             ExecuteDie();
@@ -173,6 +168,7 @@ public partial class PlayerController : Unit
         }
         if (_souls.Count == 1)
             SetSoul(CurrentSoulIndex);
+        EmitSignal(SignalName.SoulAdded, soul, CurrentSoulIndex);
     }
 
     private void SwitchSoul(int direction)
@@ -180,7 +176,9 @@ public partial class PlayerController : Unit
         if (_souls.Count == 0) return;
         
         CurrentSoulIndex = (CurrentSoulIndex + direction % _souls.Count + _souls.Count) % _souls.Count;
+        
         SetSoul(CurrentSoulIndex);
+        
         EmitSignal(SignalName.SoulChanged, CurrentSoulIndex);
     }
 

@@ -13,15 +13,48 @@ public partial class UnitStats : Resource
 
     public static UnitStats operator +(UnitStats a, UnitStats b)
     {
-        UnitStats c = (UnitStats)a.Duplicate();
-        c.BaseHp += b.BaseHp;
-        c.BaseArmor += b.BaseArmor;
-        c.BaseDamage += b.BaseDamage;
-        c.BaseSpeed += b.BaseSpeed;
-        c.BaseMana += b.BaseMana;
-        c.BaseKritChance += b.BaseKritChance;
-        c.BaseKritModifier += b.BaseKritModifier;
-
-        return c;
+        if (a is null) return b is null ? new UnitStats() : Clone(b);
+        if (b is null) return Clone(a);
+        return new UnitStats
+        {
+            BaseHp = a.BaseHp + b.BaseHp,
+            BaseArmor = a.BaseArmor + b.BaseArmor,
+            BaseDamage = a.BaseDamage + b.BaseDamage,
+            BaseSpeed = a.BaseSpeed + b.BaseSpeed,
+            BaseMana = a.BaseMana + b.BaseMana,
+            BaseKritChance = a.BaseKritChance + b.BaseKritChance,
+            BaseKritModifier = a.BaseKritModifier + b.BaseKritModifier
+        };
     }
+
+    public static UnitStats Clone(UnitStats a) => new()
+        {
+            BaseHp = a.BaseHp,
+            BaseArmor = a.BaseArmor,
+            BaseDamage = a.BaseDamage,
+            BaseSpeed = a.BaseSpeed,
+            BaseMana = a.BaseMana,
+            BaseKritChance = a.BaseKritChance,
+            BaseKritModifier = a.BaseKritModifier,
+        };
+    
+    public void Add(UnitStats other)
+    {
+        if (other is null) return;
+
+        BaseHp += other.BaseHp;
+        BaseArmor += other.BaseArmor;
+        BaseDamage += other.BaseDamage;
+        BaseSpeed += other.BaseSpeed;
+        BaseMana += other.BaseMana;
+        BaseKritChance += other.BaseKritChance;
+        BaseKritModifier += other.BaseKritModifier;
+    }
+
+    public static UnitStats Zero => new()
+    {
+        BaseHp = 0, BaseArmor = 0, BaseDamage = 0,
+        BaseSpeed = 0, BaseMana = 0, BaseKritChance = 0, BaseKritModifier = 0
+    };
+    
 }

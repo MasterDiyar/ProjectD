@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Linq;
+using Godot;
 using ProjectD.scripts.units;
 
 [GlobalClass]
@@ -42,6 +43,28 @@ public partial class Soul : Resource
     public virtual void SoulEquipped(Unit unit, int position)
     {
         
+    }
+
+    public static Soul Clone(Soul soul) => new()
+    {
+        SoulElement =  soul.SoulElement,
+        SoulName = soul.SoulName,
+        SoulDescription = soul.SoulDescription,
+        DirectImpact = soul.DirectImpact,
+        DirectionalImpact = soul.DirectionalImpact,
+        SoulTexture =  soul.SoulTexture,
+        UnitTexture =  soul.UnitTexture,
+        SoulStats = UnitStats.Clone(soul.SoulStats)
+    };
+
+    public bool InDirectImpact(int pos)
+    {
+        return DirectImpact.Any(num => num == pos);
+    }
+
+    public bool InDirectionalImpact(int pos)
+    {
+        return DirectImpact.Any(num => Position + num == pos);
     }
 }
 

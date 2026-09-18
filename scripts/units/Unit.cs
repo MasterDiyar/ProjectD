@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 using ProjectD.scripts.player;
 using ProjectD.scripts.weapon;
 
@@ -10,9 +11,9 @@ public partial class Unit : CharacterBody2D, IHasUnit
     [Signal] public delegate void DamageTakenEventHandler(float amount, int elementType);
     [Signal] public delegate void HealedEventHandler(float amount);
     [Signal] public delegate void StatsLoadedEventHandler();
-    [Export]public UnitStats Stats;
+    [Export] public UnitStats Stats;
     [Export] public Weapon Weapon;
-    public Soul CurrentSoul;
+    [Export] public Soul CurrentSoul;
     public float Hp, MaxHp;
     public float Armor, MaxArmor;
     public float Damage;
@@ -21,24 +22,27 @@ public partial class Unit : CharacterBody2D, IHasUnit
     public float KritChance;
     public float KritModifier;
     
-    public Unit unit { get => this; set{ if (value==null) return;}}
+    public List<Soul> _souls = []; 
+    public List<WeaponResource> _weapons = []; 
+
+    public int CurrentSoulIndex = 0;
+    public int CurrentWeaponIndex = 0;
     
-    public ElementType UnitElement, HittedElement;
+    public Unit unit { get => this; set{ if (value==null) return;}}
+
+    public ElementType UnitElement => CurrentSoul?.SoulElement ?? ElementType.Fire;
+    public ElementType HittedElement;
     public WeaponType UnitWeapon;
 
     public override void _Ready()
     {
-        MaxHp = Stats.BaseHp;
-        MaxArmor = Stats.BaseArmor;
-        Damage = Stats.BaseDamage;
-        MaxSpeed = Stats.BaseSpeed;
-        MaxMana = Stats.BaseMana;
-        KritChance = Stats.BaseKritChance;
-        KritModifier = Stats.BaseKritModifier;
-        Hp = MaxHp;
-        Armor = MaxArmor;
-        Speed = MaxSpeed;
-        Mana = MaxMana;
+        Stats = UnitStats.Clone(Stats);
+        if (CurrentSoul != null) {
+            CurrentSoul = Soul.Clone(CurrentSoul);
+            AddSoulStats(CurrentSoul);
+        }
+        
+        SetDefaultStats();
         EmitSignal(SignalName.StatsLoaded);
     }
 
@@ -63,6 +67,21 @@ public partial class Unit : CharacterBody2D, IHasUnit
         QueueFree();
     }
 
+    public virtual void SetDefaultStats()
+    {
+        MaxHp = Stats.BaseHp;
+        MaxArmor = Stats.BaseArmor;
+        Damage = Stats.BaseDamage;
+        MaxSpeed = Stats.BaseSpeed;
+        MaxMana = Stats.BaseMana;
+        KritChance = Stats.BaseKritChance;
+        KritModifier = Stats.BaseKritModifier;
+        Hp = MaxHp;
+        Armor = MaxArmor;
+        Speed = MaxSpeed;
+        Mana = MaxMana;
+    }
+
     public virtual void AddSoulStats(Soul soul)
     {
         MaxHp = Stats.BaseHp + soul.SoulStats.BaseHp;
@@ -77,17 +96,16 @@ public partial class Unit : CharacterBody2D, IHasUnit
         Mana = Mathf.Min(Mana + soul.SoulStats.BaseMana, MaxMana);
         Hp = Mathf.Min(Hp, MaxHp);
         Armor = Mathf.Min(Armor + soul.SoulStats.BaseArmor, MaxArmor);
-        UnitElement = soul.SoulElement;
+        CurrentSoul.SoulElement = soul.SoulElement;
         CurrentSoul = soul;
     }
 
     public void MultiSoulAdder(Soul[] soul)
     {
-        UnitStats stats = new UnitStats();
+        UnitStats stats = UnitStats.Zero;
         foreach (var s in soul)
-        {
-            stats += (UnitStats)s.SoulStats.Duplicate();
-        }
+            if (s?.SoulStats != null)
+                stats.Add(s.SoulStats);
         
         CurrentSoul.SoulStats = stats;
     }
